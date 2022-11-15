@@ -1,4 +1,4 @@
-const Accessories = () => {
+const Accessories = (): JSX.Element => {
   return <h1>Aksesuarlar</h1>;
 };
 

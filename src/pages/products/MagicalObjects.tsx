@@ -1,4 +1,4 @@
-const MagicalObjects = () => {
+const MagicalObjects = (): JSX.Element => {
   return <h1>Sihirli Nesneler</h1>;
 };
 

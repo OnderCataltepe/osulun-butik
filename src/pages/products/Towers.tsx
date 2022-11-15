@@ -1,4 +1,4 @@
-const Towers = () => {
+const Towers = (): JSX.Element => {
   return <h1>Kuleler</h1>;
 };
 

@@ -1,4 +1,4 @@
-const Transportation = () => {
+const Transportation = (): JSX.Element => {
   return <h1>Ulaşım</h1>;
 };
 

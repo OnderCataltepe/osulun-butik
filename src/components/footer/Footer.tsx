@@ -1,20 +1,20 @@
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import { Link } from 'react-router-dom';
+import MuiLink from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import YouTubeIcon from '@mui/icons-material/YouTube';
-import MuiLink from '@mui/material/Link';
 import { useTheme } from '@mui/material/styles';
+import { Link } from 'react-router-dom';
+import { SxProps } from '@mui/material/styles';
 import kartvisit from '../../assets/kartvisit.jpg';
 
 const Footer = () => {
   const theme = useTheme();
-  const boxStyle = {
+  const boxStyle: SxProps = {
     display: 'flex',
     flexDirection: 'column',
     '& >a': {
@@ -59,7 +59,7 @@ const Footer = () => {
               </Typography>
               <Link to="/sikca-sorulan-sorular">Sıkça Sorulan Sorular</Link>
               <Link to="/iade-ve-degisim">İade ve Değişim</Link>
-              <Link to="hele">Gizlilik Politikası</Link>
+              <Link to="/gizlilik-politikasi">Gizlilik Politikası</Link>
             </Box>
           </Paper>
         </Grid>

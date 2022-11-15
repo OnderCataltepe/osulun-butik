@@ -4,7 +4,7 @@ import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack';
 
-const NavIcons = () => {
+const NavIcons = (): JSX.Element => {
   return (
     <Stack direction="row" spacing={1}>
       <IconButton aria-label="search">

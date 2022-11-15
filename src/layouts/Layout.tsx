@@ -3,7 +3,7 @@ import Footer from '../components/footer/Footer';
 import { Outlet } from 'react-router-dom';
 import { ScrollRestoration } from 'react-router-dom';
 
-const Layout = () => {
+const Layout = (): JSX.Element => {
   return (
     <div
       style={{

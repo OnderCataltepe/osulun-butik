@@ -7,7 +7,12 @@ import Box from '@mui/material/Box';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import pageBg from '../../assets/backgrounds/questionBg.jpg';
-const questions = [
+
+interface Questions {
+  question: string;
+  answer: string;
+}
+const questions: Questions[] = [
   { question: 'Üye Olmadan Alışveriş yapabilir miyim?', answer: 'Evet.' },
   { question: 'Bitcoin ile ödeme yapabilir miyim?', answer: 'Hayır.' },
   {
@@ -25,7 +30,7 @@ const questions = [
     answer: 'Gerçekleşir.'
   }
 ];
-const Faq = () => {
+const Faq = (): JSX.Element => {
   const theme = useTheme();
   const isMobil = useMediaQuery(theme.breakpoints.down('md'));
 

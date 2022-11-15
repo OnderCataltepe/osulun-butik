@@ -1,13 +1,14 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Layout from './layouts/Layout';
-import Home from './pages/Home';
-import Gates from './pages/Gates';
-import MagicalObjects from './pages/MagicalObjects';
-import Towers from './pages/Towers';
-import Transportation from './pages/Transportation';
-import Accessories from './pages/Accessories';
+import Home from './pages/products/Home';
+import Gates from './pages/products/Gates';
+import MagicalObjects from './pages/products/MagicalObjects';
+import Towers from './pages/products/Towers';
+import Transportation from './pages/products/Transportation';
+import Accessories from './pages/products/Accessories';
 import Faq from './pages/corporate/Faq';
 import ReturnDelivery from './pages/corporate/ReturnDelivery';
+import Privacy from './pages/corporate/Privacy';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -38,7 +39,8 @@ const router = createBrowserRouter([
         element: <Accessories />
       },
       { path: 'sikca-sorulan-sorular', element: <Faq /> },
-      { path: 'iade-ve-degisim', element: <ReturnDelivery /> }
+      { path: 'iade-ve-degisim', element: <ReturnDelivery /> },
+      { path: 'gizlilik-politikasi', element: <Privacy /> }
     ]
   }
 ]);

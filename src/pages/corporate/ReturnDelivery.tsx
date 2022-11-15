@@ -3,15 +3,32 @@ import Box from '@mui/material/Box';
 import CircleIcon from '@mui/icons-material/Circle';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
+import Divider from '@mui/material/Divider';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
+import { SxProps } from '@mui/material/styles';
 
-const ReturnDelivery = () => {
+const ReturnDelivery = (): JSX.Element => {
   const theme = useTheme();
+  const isMobil = useMediaQuery(theme.breakpoints.down('md'));
+  const iconStyle: SxProps = {
+    color: theme.palette.common.brown2,
+    mr: 1
+  };
 
   return (
     <Box sx={{ p: 4, my: 4 }}>
       <Box sx={{ textAlign: 'center', mb: 4 }}>
         <Typography variant="h1">İade ve Değişim Prosedürü</Typography>
+        <Divider
+          sx={{
+            width: isMobil ? '90%' : '600px',
+            mt: 1,
+            mx: 'auto',
+            backgroundColor: theme.palette.common.lightGray2,
+            borderBottomWidth: 2
+          }}
+        />
       </Box>
       <Box>
         <Typography sx={{ mb: 2 }}>
@@ -26,13 +43,13 @@ const ReturnDelivery = () => {
           olarak, yapacağınız alışverişlerinizi fatura tarihinden itibaren 7 gün içerisinde;
           <List>
             <ListItem>
-              <CircleIcon sx={{ color: theme.palette.common.brown2, mr: 1 }} />
+              <CircleIcon sx={iconStyle} />
               <Typography>
                 Sülün Osman&apos;a faks çekerek ürün iadesi için onay alınması,
               </Typography>
             </ListItem>
             <ListItem>
-              <CircleIcon sx={{ color: theme.palette.common.brown2, mr: 1 }} />
+              <CircleIcon sx={iconStyle} />
               <Typography>
                 Alınan onayın ardından herhangi bir satış noktlarımızdan para iadesi
                 yapılabilecektir.
@@ -42,18 +59,18 @@ const ReturnDelivery = () => {
           İade hakkının geçerli olabilmesi için;
           <List>
             <ListItem>
-              <CircleIcon sx={{ color: theme.palette.common.brown2, mr: 1 }} />
+              <CircleIcon sx={iconStyle} />
               <Typography>Fatura tarihinden itibaren 7 gün içinde kargoya verilmesi,</Typography>
             </ListItem>
             <ListItem>
-              <CircleIcon sx={{ color: theme.palette.common.brown2, mr: 1 }} />
+              <CircleIcon sx={iconStyle} />
               <Typography>
                 Ürünün üzerindeki fiyat etiketinin çıkarılmamış, ürünün kullanılmamış ve yeniden
                 satılabilir durumda olması,
               </Typography>
             </ListItem>
             <ListItem>
-              <CircleIcon sx={{ color: theme.palette.common.brown2, mr: 1 }} />
+              <CircleIcon sx={iconStyle} />
               <Typography>
                 Varsa sertifikası ve ürün kutusu ve paketleri ile birlikte gönderilmesi
                 gerekmektedir.

@@ -1,35 +1,24 @@
+import React, { useState } from 'react';
+import { useEffect } from 'react';
+import { navPages } from './constants';
+import { NavLink } from 'react-router-dom';
 import Toolbar from '@mui/material/Toolbar';
 import Box from '@mui/material/Box';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import logo from '../../assets/sülünButikLogo.jpg';
-import { NavLink } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
-import { useState } from 'react';
-import { navPages } from './constants';
-import { useEffect } from 'react';
+import { SxProps } from '@mui/material/styles';
+import logo from '../../assets/sülünButikLogo.jpg';
+
 interface ActiveType {
   isActive: boolean;
-}
-interface NavStyleTypes {
-  [props: string]: string | number;
-}
-
-interface StyleType {
-  [props: string]: string | number | NavStyleTypes;
 }
 
 const LargeToolbar = () => {
   const theme = useTheme();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-
-  useEffect(() => {
-    console.log('hele');
-    console.log(currentIndex);
-  }, [anchorEl]);
-
-  const listItemStyle: StyleType = {
+  const listItemStyle: SxProps = {
     display: 'flex',
     justifyContent: 'center',
     px: 2,
@@ -41,20 +30,22 @@ const LargeToolbar = () => {
     }
   };
 
-  const handleClick = (index: number) => (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-    setCurrentIndex(index);
-  };
-  const handleClose = () => {
+  const handleClick =
+    (index: number) =>
+    (event: React.MouseEvent<HTMLElement>): void => {
+      setAnchorEl(event.currentTarget);
+      setCurrentIndex(index);
+    };
+  const handleClose = (): void => {
     setAnchorEl(null);
   };
 
-  const activeNavLink: NavStyleTypes = {
+  const activeNavLink: React.CSSProperties = {
     color: theme.palette.common.brown1,
     textDecoration: 'underline',
     textAlign: 'center'
   };
-  const nonActiveNavLink: NavStyleTypes = {
+  const nonActiveNavLink: React.CSSProperties = {
     color: 'inherit',
     textDecoration: 'none',
     textAlign: 'center'
