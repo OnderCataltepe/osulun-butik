@@ -7,6 +7,7 @@ import watchImg from '../../assets/products/accessories/watches/dolmabahceWatch/
 import sculptureImg from '../../assets/products/accessories/sculptures/troya/troya1.jpg';
 
 export const navPages = [
+  { expand: false, title: 'Anasayfa', path: '/home', subTitles: [] },
   {
     expand: true,
     title: 'Köprüler / Geçitler',

@@ -5,11 +5,12 @@ const baseTheme = createTheme({
     common: {
       lightGray1: '#f9f9f9',
       lightGray2: '#F1F1F1',
-      gray: '#E1E1E1',
+      gray1: '#BEB791',
+      gray2: '#707070',
       black: '#000000',
       white: '#FFFFFF',
-      brown1: '#A18142',
-      brown2: '#D6B861',
+      brown1: '#5b310c',
+      brown2: '#BB7946',
       brownFont: '#D6B861',
       lightBrownFont: '#BEB791'
     }
@@ -28,17 +29,15 @@ const baseTheme = createTheme({
       fontSize: 12
     },
     subText: {
-      fontSize: 10
+      fontSize: 10,
+      color: 'black'
     }
   },
   components: {
-    MuiCardContent: {
+    MuiAppBar: {
       styleOverrides: {
         root: {
-          padding: 8,
-          '&:last-child': {
-            paddingBottom: 8
-          }
+          boxShadow: '0px 10px 10px -15px #222'
         }
       }
     },
@@ -46,6 +45,31 @@ const baseTheme = createTheme({
       styleOverrides: {
         root: {
           padding: 4
+        }
+      }
+    },
+    MuiAccordionDetails: {
+      styleOverrides: {
+        root: {
+          padding: 0
+        }
+      }
+    },
+    MuiMenu: {
+      styleOverrides: {
+        root: {
+          pointerEvents: 'none',
+          width: '100%'
+        }
+      }
+    },
+    MuiMenuItem: {
+      styleOverrides: {
+        root: {
+          backgroundColor: 'white !important',
+          '&:hover': {
+            backgroundColor: 'white'
+          }
         }
       }
     }

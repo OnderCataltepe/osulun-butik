@@ -7,7 +7,7 @@ import { NavLink } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
 import { useState } from 'react';
 import { navPages } from './constants';
-
+import { useEffect } from 'react';
 interface ActiveType {
   isActive: boolean;
 }
@@ -24,11 +24,17 @@ const LargeToolbar = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
 
+  useEffect(() => {
+    console.log('hele');
+    console.log(currentIndex);
+  }, [anchorEl]);
+
   const listItemStyle: StyleType = {
     display: 'flex',
     justifyContent: 'center',
     px: 2,
-    backgroundColor: 'white',
+    py: 0,
+    fontSize: '18px',
     color: 'black',
     '&:hover': {
       color: '#5b310c'
@@ -61,12 +67,12 @@ const LargeToolbar = () => {
         <img src={logo} alt="logo" width="400" height="auto" />
       </Box>
       <Toolbar sx={{ alignItems: 'center', width: '800px', justifyContent: 'center' }}>
-        <Box sx={{ display: 'flex', width: '100%', justifyContent: 'space-evenly' }}>
-          <Box sx={listItemStyle} key={111}>
-            <NavLink to="/home" style={navLinkStyle}>
-              Anasayfa
-            </NavLink>
-          </Box>
+        <Box
+          sx={{
+            display: 'flex',
+            width: '100%',
+            justifyContent: 'space-evenly'
+          }}>
           {navPages.map((item, index) => {
             const idNum = index + 1;
             return item.expand ? (
@@ -93,51 +99,62 @@ const LargeToolbar = () => {
                       }
                     }}
                     PaperProps={{
-                      onMouseLeave: handleClose,
                       sx: {
                         pointerEvents: 'auto',
                         width: '100%',
-                        maxWidth: '100%',
-                        pt: 2,
-                        mx: 2,
+                        py: 2,
+                        backgroundColor: 'transparent',
                         boxShadow: 'none'
                       }
                     }}>
-                    <MenuItem selected={false} onClick={handleClose} disableGutters>
-                      {item.subTitles.map((subItem, index) => {
-                        return (
-                          <Box sx={listItemStyle} key={index}>
-                            <NavLink to={subItem.path} style={navLinkStyle}>
-                              <Box
-                                sx={{
-                                  '&:hover': {
-                                    boxShadow: '0 0 6px 2px #b7b7b7',
-                                    '&>img': {
-                                      transform: 'scale(1.2)',
-                                      transition: 'transform 10s'
-                                    }
-                                  },
-                                  overflow: 'hidden',
-                                  height: '100px',
-                                  width: '200px',
-                                  borderRadius: '10px',
-                                  mb: 1
-                                }}>
-                                <img
-                                  src={subItem.img}
-                                  alt="image"
-                                  style={{
+                    {' '}
+                    <Box
+                      sx={{
+                        width: '100%',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        backgroundColor: 'white'
+                      }}>
+                      <MenuItem
+                        sx={{ py: 0 }}
+                        selected={false}
+                        onClick={handleClose}
+                        disableGutters>
+                        {item.subTitles.map((subItem, index) => {
+                          return (
+                            <Box sx={listItemStyle} key={index}>
+                              <NavLink to={subItem.path} style={navLinkStyle}>
+                                <Box
+                                  sx={{
+                                    '&:hover': {
+                                      boxShadow: '0 0 6px 2px #b7b7b7',
+                                      '&>img': {
+                                        transform: 'scale(1.2)',
+                                        transition: 'transform 10s'
+                                      }
+                                    },
+                                    overflow: 'hidden',
                                     height: '100px',
-                                    width: '200px'
-                                  }}
-                                />
-                              </Box>
-                              {subItem.title}
-                            </NavLink>
-                          </Box>
-                        );
-                      })}
-                    </MenuItem>
+                                    width: '200px',
+                                    borderRadius: '10px',
+                                    my: 1
+                                  }}>
+                                  <img
+                                    src={subItem.img}
+                                    alt="image"
+                                    style={{
+                                      height: '100px',
+                                      width: '200px'
+                                    }}
+                                  />
+                                </Box>
+                                {subItem.title}
+                              </NavLink>
+                            </Box>
+                          );
+                        })}
+                      </MenuItem>
+                    </Box>
                   </Menu>
                 </NavLink>
               </Box>
