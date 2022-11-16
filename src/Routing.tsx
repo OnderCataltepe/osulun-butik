@@ -6,9 +6,12 @@ import MagicalObjects from './pages/products/MagicalObjects';
 import Towers from './pages/products/Towers';
 import Transportation from './pages/products/Transportation';
 import Accessories from './pages/products/Accessories';
-import Faq from './pages/corporate/Faq';
-import ReturnDelivery from './pages/corporate/ReturnDelivery';
-import Privacy from './pages/corporate/Privacy';
+import Faq from './pages/customer-guide/Faq';
+import ReturnDelivery from './pages/customer-guide/ReturnDelivery';
+import Privacy from './pages/customer-guide/Privacy';
+import Partnerships from './pages/corporate/Partnership';
+import SalesPoints from './pages/corporate/SalesPoints';
+import Contacts from './pages/corporate/Contacts';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -38,9 +41,30 @@ const router = createBrowserRouter([
         path: 'aksesuarlar',
         element: <Accessories />
       },
-      { path: 'sikca-sorulan-sorular', element: <Faq /> },
-      { path: 'iade-ve-degisim', element: <ReturnDelivery /> },
-      { path: 'gizlilik-politikasi', element: <Privacy /> }
+      {
+        path: 'sikca-sorulan-sorular',
+        element: <Faq />
+      },
+      {
+        path: 'iade-ve-degisim',
+        element: <ReturnDelivery />
+      },
+      {
+        path: 'gizlilik-politikasi',
+        element: <Privacy />
+      },
+      {
+        path: 'ortakliklar',
+        element: <Partnerships />
+      },
+      {
+        path: 'satis-noktalarimiz',
+        element: <SalesPoints />
+      },
+      {
+        path: 'iletisim',
+        element: <Contacts />
+      }
     ]
   }
 ]);

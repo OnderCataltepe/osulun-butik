@@ -75,11 +75,11 @@ const Footer = () => {
               <Typography variant="h6" sx={{ color: theme.palette.common.gray1 }} gutterBottom>
                 Kurumsal
               </Typography>
-              <Link to="hele">Hikayemiz</Link>
-              <Link to="hele">Basında Biz</Link>
-              <Link to="hele">Ortaklıklar</Link>
-              <Link to="hele">Satış Noktaları</Link>
-              <Link to="hele">İletişim</Link>
+              <Link to="/hikayemiz">Hikayemiz</Link>
+              <Link to="/basinda-biz">Basında Biz</Link>
+              <Link to="/ortakliklar">Ortaklıklar</Link>
+              <Link to="/satis-noktalarimiz">Satış Noktaları</Link>
+              <Link to="/iletisim">İletişim</Link>
             </Box>
           </Paper>
         </Grid>
