@@ -6,8 +6,8 @@ const Contacts = (): JSX.Element => {
   return (
     <Container
       sx={{
-        display: 'flex',
         flexDirection: 'column',
+        display: 'flex',
         my: 8,
         boxShadow: '0px 0px 10px -4px rgba(0,0,0,0.75);'
       }}>
