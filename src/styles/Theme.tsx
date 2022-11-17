@@ -1,6 +1,17 @@
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import '../index.css';
 
+const breakpoints = {
+  values: {
+    xs: 0,
+    sm: 600,
+    md: 900,
+    lg: 1200,
+    xl: 1536
+  }
+};
 const baseTheme = createTheme({
+  ...breakpoints,
   palette: {
     common: {
       lightGray1: '#f9f9f9',
@@ -12,18 +23,32 @@ const baseTheme = createTheme({
       brown1: '#5b310c',
       brown2: '#BB7946',
       brownFont: '#D6B861',
-      lightBrownFont: '#BEB791'
+      lightBrownFont: '#BEB791',
+      green: '#43664B',
+      pink: '#E6A379',
+      lightGreen: '#B5C18B',
+      yellow: '#FACE44'
     }
   },
   typography: {
     h1: {
-      fontFamily: 'revert-layer',
-      fontSize: 36
+      fontFamily: 'Merriweather, serif',
+      fontSize: 60,
+      [`@media screen and (max-width: ${breakpoints.values.md}px)`]: {
+        fontSize: 45
+      }
+    },
+    h2: {
+      fontSize: 42,
+      fontFamily: 'Playfair Display, serif'
     },
     body1: {
-      fontSize: 16,
-      fontFamily: 'serif',
-      letterSpacing: 1
+      fontSize: 18,
+      fontFamily: 'Lato, sans-serif',
+      letterSpacing: 1,
+      [`@media screen and (max-width: ${breakpoints.values.md}px)`]: {
+        fontSize: 12
+      }
     },
     body2: {
       fontSize: 12

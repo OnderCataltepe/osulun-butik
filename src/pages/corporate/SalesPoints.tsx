@@ -11,41 +11,8 @@ import Box from '@mui/material/Box';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
-interface Sales {
-  [prop: string]: string;
-}
+import { salesPointsDetails } from './constants';
 
-const salesPointsDetails: Sales[] = [
-  {
-    name: 'Kardeşler Kıraathanesi ',
-    address: 'TaşKöprü Mahallesi, Dikembe Mutombo Caddesi, No: 27B/1, Beyoğlu/İstanbul'
-  },
-  {
-    name: 'Eski Şükran Oteli',
-    address: 'Endülüs Mahallesi, Talebe Sokak, No: 41, Arnavutköy/İstanbul'
-  },
-  {
-    name: 'Sohbet Çay Evi ',
-    address: 'Kaportacılar, Çarls Dögol Sokak, No:4/A, 34676 Üsküdar/İstanbul'
-  },
-  { name: 'Dost Kitabevi Önü ', address: 'Kızılay, Karanfil Sokak. No:11, 06420 Çankaya/Ankara' },
-  {
-    name: 'Burger King Önü ',
-    address: 'Katip Mustafa Çelebi, Mah İstiklal Caddesi No:1, 34433 Beyoğlu/İstanbul'
-  },
-  {
-    name: 'Kadıköy Metro Çıkışı ',
-    address: 'Osmanağa, Vahap Bey Sk. No:29, 34714 Kadıköy/İstanbul'
-  },
-  {
-    name: 'Galata Köprüsü Üzeri ',
-    address: 'Kemankeş Karamustafa Paşa, Galata Köprüsü, 34425 Beyoğlu/İstanbul'
-  },
-  {
-    name: 'Kız Kulesi Karşısı Dördüncü Bank ',
-    address: 'Salacak, Üsküdar Harem Sahil Yolu No:24, 34668 Üsküdar/İstanbul'
-  }
-];
 const SalesPoints = (): JSX.Element => {
   const theme = useTheme();
   const isMobil = useMediaQuery(theme.breakpoints.down('md'));

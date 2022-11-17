@@ -17,44 +17,40 @@ const Footer = () => {
   const boxStyle: SxProps = {
     display: 'flex',
     flexDirection: 'column',
+
     '& >a': {
       marginBottom: '4px',
       textDecoration: 'none',
-      color: 'white',
+      color: 'black',
       '&:hover': {
-        color: theme.palette.common.brownFont
+        color: theme.palette.common.brown1
       }
     }
+  };
+  const paperStyle: SxProps = {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    boxShadow: 'none',
+    backgroundColor: 'inherit'
   };
   return (
     <footer
       style={{
         padding: '20px 10px',
-        backgroundColor: 'black',
+        backgroundColor: '#E6E4E0',
         width: '100%'
       }}>
       <Grid container spacing={2}>
         <Grid item xs={6} md={3}>
-          <Paper
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              backgroundColor: 'inherit'
-            }}>
+          <Paper sx={paperStyle}>
             <img alt="kartvisit" src={kartvisit} style={{ width: '80%', height: 'auto' }} />
           </Paper>
         </Grid>
         <Grid item xs={6} md={3}>
-          <Paper
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              backgroundColor: 'inherit'
-            }}>
+          <Paper sx={paperStyle}>
             <Box sx={boxStyle}>
-              <Typography variant="h6" sx={{ color: theme.palette.common.gray1 }} gutterBottom>
+              <Typography variant="h6" sx={{ color: theme.palette.common.brown1 }} gutterBottom>
                 Müşteri Hizmetleri
               </Typography>
               <Link to="/sikca-sorulan-sorular">Sıkça Sorulan Sorular</Link>
@@ -64,15 +60,9 @@ const Footer = () => {
           </Paper>
         </Grid>
         <Grid item xs={6} md={3}>
-          <Paper
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              backgroundColor: 'inherit'
-            }}>
+          <Paper sx={paperStyle}>
             <Box sx={boxStyle}>
-              <Typography variant="h6" sx={{ color: theme.palette.common.gray1 }} gutterBottom>
+              <Typography variant="h6" sx={{ color: theme.palette.common.brown1 }} gutterBottom>
                 Kurumsal
               </Typography>
               <Link to="/hikayemiz">Hikayemiz</Link>
@@ -84,14 +74,8 @@ const Footer = () => {
           </Paper>
         </Grid>
         <Grid item xs={6} md={3}>
-          <Paper
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              backgroundColor: 'inherit'
-            }}>
-            <Typography variant="h6" sx={{ color: theme.palette.common.gray1 }} gutterBottom>
+          <Paper sx={paperStyle}>
+            <Typography variant="h6" sx={{ color: theme.palette.common.brown1 }} gutterBottom>
               Sosyal Medya
             </Typography>
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
