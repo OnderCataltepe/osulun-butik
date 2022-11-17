@@ -14,7 +14,7 @@ interface ActiveType {
   isActive: boolean;
 }
 
-const LargeToolbar = () => {
+const LargeToolbar = (): JSX.Element => {
   const theme = useTheme();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
