@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useEffect } from 'react';
 import { navPages } from './constants';
 import { NavLink } from 'react-router-dom';
 import Toolbar from '@mui/material/Toolbar';
@@ -33,9 +32,13 @@ const LargeToolbar = (): JSX.Element => {
   const handleClick =
     (index: number) =>
     (event: React.MouseEvent<HTMLElement>): void => {
+      console.log("initial active element: ", document.activeElement) // HOVER DURUMUNDA KONSOLDAN AKTİF OLAN ELEMANIN NE OLDUĞUNA BAKABİLİRSİN, BU SORUN OLUYOR. REACT-ROUTER GITHUB ISSUELARINDA DA BAHSEDİLMİŞ => https://github.com/remix-run/react-router/issues/5210
+      event.currentTarget.focus()
       setAnchorEl(event.currentTarget);
       setCurrentIndex(index);
+        console.log("final active element: ", document.activeElement)
     };
+
   const handleClose = (): void => {
     setAnchorEl(null);
   };
@@ -52,6 +55,7 @@ const LargeToolbar = (): JSX.Element => {
   };
 
   const navLinkStyle = ({ isActive }: ActiveType) => (isActive ? activeNavLink : nonActiveNavLink);
+
   return (
     <>
       <Box>
