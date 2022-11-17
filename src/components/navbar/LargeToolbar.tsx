@@ -32,11 +32,9 @@ const LargeToolbar = (): JSX.Element => {
   const handleClick =
     (index: number) =>
     (event: React.MouseEvent<HTMLElement>): void => {
-      console.log("initial active element: ", document.activeElement) // HOVER DURUMUNDA KONSOLDAN AKTİF OLAN ELEMANIN NE OLDUĞUNA BAKABİLİRSİN, BU SORUN OLUYOR. REACT-ROUTER GITHUB ISSUELARINDA DA BAHSEDİLMİŞ => https://github.com/remix-run/react-router/issues/5210
-      event.currentTarget.focus()
+      event.currentTarget.focus();
       setAnchorEl(event.currentTarget);
       setCurrentIndex(index);
-        console.log("final active element: ", document.activeElement)
     };
 
   const handleClose = (): void => {
