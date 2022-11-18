@@ -12,6 +12,7 @@ import Privacy from './pages/customer-guide/Privacy';
 import Partnerships from './pages/corporate/Partnership';
 import SalesPoints from './pages/corporate/SalesPoints';
 import Contacts from './pages/corporate/Contacts';
+import Press from './pages/corporate/Press';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
       {
         path: 'iletisim',
         element: <Contacts />
+      },
+      {
+        path: 'basinda-biz',
+        element: <Press />
       }
     ]
   }

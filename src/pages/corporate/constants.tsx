@@ -1,7 +1,14 @@
+// Partner Images
+import goldSq from '../../assets/partners/goldSq.jpg';
+import simonSq from '../../assets/partners/simonSq.jpg';
+import voigtSq from '../../assets/partners/voigtSq.jpg';
+
+// Types
 interface Ctype {
   [prop: string]: string;
 }
 
+// Sales Points
 export const salesPointsDetails: Ctype[] = [
   {
     name: 'Kardeşler Kıraathanesi ',
@@ -34,10 +41,7 @@ export const salesPointsDetails: Ctype[] = [
   }
 ];
 
-import goldSq from '../../assets/partners/goldSq.jpg';
-import simonSq from '../../assets/partners/simonSq.jpg';
-import voigtSq from '../../assets/partners/voigtSq.jpg';
-
+// Partners
 export const partners: Ctype[] = [
   {
     name: 'Simon Leviev',
