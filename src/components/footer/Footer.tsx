@@ -10,7 +10,7 @@ import YouTubeIcon from '@mui/icons-material/YouTube';
 import { useTheme } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
 import { SxProps } from '@mui/material/styles';
-import kartvisit from '../../assets/kartvisit.jpg';
+import logoFooter from '../../assets/logoFooter.jpg';
 
 const Footer = () => {
   const theme = useTheme();
@@ -21,9 +21,9 @@ const Footer = () => {
     '& >a': {
       marginBottom: '4px',
       textDecoration: 'none',
-      color: 'black',
+      color: 'white',
       '&:hover': {
-        color: theme.palette.common.brown1
+        color: theme.palette.common.orange
       }
     }
   };
@@ -38,19 +38,19 @@ const Footer = () => {
     <footer
       style={{
         padding: '20px 10px',
-        backgroundColor: '#E6E4E0',
+        backgroundColor: 'black',
         width: '100%'
       }}>
       <Grid container spacing={2}>
         <Grid item xs={6} md={3}>
           <Paper sx={paperStyle}>
-            <img alt="kartvisit" src={kartvisit} style={{ width: '80%', height: 'auto' }} />
+            <img alt="kartvisit" src={logoFooter} style={{ width: '80%', height: 'auto' }} />
           </Paper>
         </Grid>
         <Grid item xs={6} md={3}>
           <Paper sx={paperStyle}>
             <Box sx={boxStyle}>
-              <Typography variant="h6" sx={{ color: theme.palette.common.brown1 }} gutterBottom>
+              <Typography variant="h6" sx={{ color: theme.palette.common.gray2 }} gutterBottom>
                 Müşteri Hizmetleri
               </Typography>
               <Link to="/sikca-sorulan-sorular">Sıkça Sorulan Sorular</Link>
@@ -62,7 +62,7 @@ const Footer = () => {
         <Grid item xs={6} md={3}>
           <Paper sx={paperStyle}>
             <Box sx={boxStyle}>
-              <Typography variant="h6" sx={{ color: theme.palette.common.brown1 }} gutterBottom>
+              <Typography variant="h6" sx={{ color: theme.palette.common.gray2 }} gutterBottom>
                 Kurumsal
               </Typography>
               <Link to="/hikayemiz">Hikayemiz</Link>
@@ -75,7 +75,7 @@ const Footer = () => {
         </Grid>
         <Grid item xs={6} md={3}>
           <Paper sx={paperStyle}>
-            <Typography variant="h6" sx={{ color: theme.palette.common.brown1 }} gutterBottom>
+            <Typography variant="h6" sx={{ color: theme.palette.common.gray2 }} gutterBottom>
               Sosyal Medya
             </Typography>
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>

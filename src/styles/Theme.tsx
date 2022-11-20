@@ -16,34 +16,36 @@ const baseTheme = createTheme({
     common: {
       lightGray1: '#f9f9f9',
       lightGray2: '#F1F1F1',
-      gray1: '#BEB791',
+      gray1: '#1A1A1A',
       gray2: '#707070',
       black: '#000000',
       white: '#FFFFFF',
-      brown1: '#5b310c',
-      brown2: '#BB7946',
-      brownFont: '#D6B861',
-      lightBrownFont: '#BEB791',
-      green: '#43664B',
-      pink: '#E6A379',
-      lightGreen: '#B5C18B',
-      yellow: '#FACE44'
+      brown: '#BB7946',
+      orange: '#F15123',
+      red: '#933E38'
     }
   },
   typography: {
     h1: {
       fontFamily: 'Merriweather, serif',
       fontSize: 60,
+      letterSpacing: 1,
+      color: '#45484A',
       [`@media screen and (max-width: ${breakpoints.values.md}px)`]: {
-        fontSize: 45
+        fontSize: 36
       }
     },
     h2: {
-      fontSize: 42,
-      fontFamily: 'Playfair Display, serif'
+      fontSize: 40,
+      fontFamily: 'Playfair Display, serif',
+      letterSpacing: 1,
+      fontWeight: 'bold',
+      [`@media screen and (max-width: ${breakpoints.values.md}px)`]: {
+        fontSize: 30
+      }
     },
     body1: {
-      fontSize: 18,
+      fontSize: 16,
       fontFamily: 'Lato, sans-serif',
       letterSpacing: 1,
       [`@media screen and (max-width: ${breakpoints.values.md}px)`]: {
@@ -85,16 +87,6 @@ const baseTheme = createTheme({
         root: {
           pointerEvents: 'none',
           width: '100%'
-        }
-      }
-    },
-    MuiMenuItem: {
-      styleOverrides: {
-        root: {
-          backgroundColor: 'white !important',
-          '&:hover': {
-            backgroundColor: 'white'
-          }
         }
       }
     }

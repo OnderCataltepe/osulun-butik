@@ -1,9 +1,14 @@
+// MUI
 import Animate from '../../components/animations/ScrollAnimations';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
+// Components, backgroundImages and content constants
+import Title from '../../components/body/title/Title';
 import { partners } from './constants';
+import partnersBg from '../../assets/backgrounds/partnersBg.jpg';
+
 const Partnerships = () => {
   const theme = useTheme();
   const isMobil = useMediaQuery(theme.breakpoints.down('md'));
@@ -16,17 +21,7 @@ const Partnerships = () => {
         alignItems: ' center',
         overflow: 'hidden'
       }}>
-      <Box sx={{ textAlign: 'center', my: 6 }}>
-        <Typography variant="h1">İş Ortaklarımız</Typography>
-        <Typography
-          variant="body1"
-          sx={{ color: theme.palette.common.brown1, py: 4, px: isMobil ? 6 : 20 }}>
-          Sınırlı sayıda tuttuğumuz iş ortaklarımızın tüm ürünlerine yoğun yatırımlar yaparak bilgi
-          ve tecrübemizi maksimum düzeyde tutmaya çalışıyoruz. Müşterilerimize sunduğumuz ve
-          desteğini vermeye devam ettiğimiz teknolojilerde tüm personelimizin tecrübesini arttırarak
-          hizmet kalitemizi ve müşteri memnuniyetini arttırıyoruz.
-        </Typography>
-      </Box>
+      <Title image={partnersBg} title="İş Ortaklarımız" color="white" />
       {partners.map((item, index) => {
         return (
           <Box
@@ -39,7 +34,9 @@ const Partnerships = () => {
               textAlign: 'center'
             }}>
             <Animate.ScaleIn>
-              <Typography variant="h2">{item.name}</Typography>
+              <Typography variant="h2" sx={{ color: item.titleColor }}>
+                {item.name}
+              </Typography>
             </Animate.ScaleIn>
             <Box
               sx={{
@@ -68,7 +65,7 @@ const Partnerships = () => {
                 </Box>
               </Animate.FadeRight>
               <Animate.FadeLeft>
-                <Typography variant="body1" sx={{ color: 'white', fontWeight: 'bold' }}>
+                <Typography variant="body1" sx={{ color: item.textColor, fontWeight: 'bold' }}>
                   {item.description}
                   {item.italic.length > 0 && <i style={{ fontWeight: 'lighter' }}>{item.italic}</i>}
                 </Typography>

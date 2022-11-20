@@ -100,7 +100,7 @@ const DrawerComp = (): JSX.Element => {
         {openDrawer ? (
           <CloseIcon sx={{ color: theme.palette.common.gray2, zIndex: 9999 }} />
         ) : (
-          <MenuIcon sx={{ color: theme.palette.common.gray2, zIndex: 9999 }} />
+          <MenuIcon sx={{ color: theme.palette.common.gray2 }} />
         )}
       </IconButton>
       <Box sx={{ zIndex: 9999 }}>

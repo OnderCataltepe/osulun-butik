@@ -1,40 +1,31 @@
+// MUI
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-import Divider from '@mui/material/Divider';
 import ListItemText from '@mui/material/ListItemText';
-
-import HandshakeIcon from '@mui/icons-material/Handshake';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
-
+import HandshakeIcon from '@mui/icons-material/Handshake';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
-
+// Components, backgrounds and page constants
+import salesPointsBg from '../../assets/backgrounds/salesPointsBg.jpg';
+import Title from '../../components/body/title/Title';
 import { salesPointsDetails } from './constants';
 
 const SalesPoints = (): JSX.Element => {
   const theme = useTheme();
   const isMobil = useMediaQuery(theme.breakpoints.down('md'));
+
   return (
-    <Container sx={{ my: 4 }}>
-      <Box
-        sx={{
-          textAlign: 'center'
-        }}>
-        <Typography variant="h1">Satış Noktalarımız</Typography>
-      </Box>
-      <Divider
-        sx={{ width: '80%', mt: 1, mx: 'auto', textAlign: 'center', borderBottomWidth: 2 }}
-      />
+    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <Title image={salesPointsBg} color="white" title="Satış Noktalarımız" />
       <List
         sx={{
           display: 'flex',
           flexWrap: 'wrap',
           alignItems: 'stretch',
           justifyContent: 'space-between',
-          width: '100%',
-          my: 4
+          width: '80%',
+          my: 6
         }}>
         {salesPointsDetails.map((item, index) => {
           return (
@@ -52,7 +43,7 @@ const SalesPoints = (): JSX.Element => {
           );
         })}
       </List>
-    </Container>
+    </Box>
   );
 };
 

@@ -1,36 +1,25 @@
+// MUI
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-import Divider from '@mui/material/Divider';
 import CircleIcon from '@mui/icons-material/Circle';
-
 import { useTheme } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import { SxProps } from '@mui/material/styles';
+// Components and background images
+import Title from '../../components/body/title/Title';
+import collusionBg from '../../assets/backgrounds/privacyBg.png';
 
 const Privacy = (): JSX.Element => {
   const theme = useTheme();
-  const isMobil = useMediaQuery(theme.breakpoints.down('md'));
   const iconStyle: SxProps = {
-    color: theme.palette.common.brown2,
+    color: theme.palette.common.orange,
     mr: 1
   };
-  return (
-    <Box sx={{ p: 4, my: 4 }}>
-      <Box sx={{ textAlign: 'center', mb: 4 }}>
-        <Typography variant="h1">Gizlilik Politikamız</Typography>
-        <Divider
-          sx={{
-            width: isMobil ? '90%' : '600px',
-            mx: 'auto',
-            mt: 1,
-            backgroundColor: theme.palette.common.lightGray2,
-            borderBottomWidth: 2
-          }}
-        />
-      </Box>
 
+  return (
+    <Box sx={{ mb: 4 }}>
+      <Title image={collusionBg} color="white" title="Gizlilik Politikamız" />
       <Box>
         <List>
           <ListItem>

@@ -16,7 +16,7 @@ const NavHeader = (): JSX.Element => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        p: 1,
+        px: 1,
         backgroundColor: theme.palette.common.lightGray1,
         zIndex: 9999
       }}>

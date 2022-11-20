@@ -7,7 +7,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { useTheme } from '@mui/material/styles';
 import { SxProps } from '@mui/material/styles';
-import logo from '../../assets/sülünButikLogo.jpg';
+import sulunImg from '../../assets/sulunImg.png';
 
 interface ActiveType {
   isActive: boolean;
@@ -20,12 +20,10 @@ const LargeToolbar = (): JSX.Element => {
   const listItemStyle: SxProps = {
     display: 'flex',
     justifyContent: 'center',
-    px: 2,
+    px: 1.5,
     py: 0,
-    fontSize: '18px',
-    color: 'black',
-    '&:hover': {
-      color: '#5b310c'
+    '&:hover a': {
+      color: 'black !important'
     }
   };
 
@@ -42,8 +40,8 @@ const LargeToolbar = (): JSX.Element => {
   };
 
   const activeNavLink: React.CSSProperties = {
-    color: theme.palette.common.brown1,
-    textDecoration: 'underline',
+    color: 'black',
+    textDecoration: 'none',
     textAlign: 'center'
   };
   const nonActiveNavLink: React.CSSProperties = {
@@ -56,14 +54,27 @@ const LargeToolbar = (): JSX.Element => {
 
   return (
     <>
-      <Box>
-        <img src={logo} alt="logo" width="400" height="auto" />
-      </Box>
-      <Toolbar sx={{ alignItems: 'center', width: '800px', justifyContent: 'center' }}>
+      <Toolbar
+        sx={{
+          alignItems: 'center',
+          width: '100%',
+          justifyContent: 'space-between'
+        }}>
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          <img src={sulunImg} alt="logo" width="35px" height="auto" />
+          <p
+            style={{
+              fontSize: '25px',
+              paddingLeft: '3px',
+              color: theme.palette.common.gray2,
+              fontFamily: 'initial'
+            }}>
+            SÜLÜN BUTİK
+          </p>
+        </Box>
         <Box
           sx={{
             display: 'flex',
-            width: '100%',
             justifyContent: 'space-evenly'
           }}>
           {navPages.map((item, index) => {
@@ -84,70 +95,80 @@ const LargeToolbar = (): JSX.Element => {
                     anchorEl={anchorEl}
                     open={Boolean(anchorEl) && currentIndex === idNum}
                     onClose={handleClose}
-                    MenuListProps={{
-                      sx: {
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center'
-                      }
-                    }}
                     PaperProps={{
                       sx: {
                         pointerEvents: 'auto',
-                        width: '100%',
                         py: 2,
-                        backgroundColor: 'transparent',
-                        boxShadow: 'none'
+                        boxShadow: 'none',
+                        backgroundColor: 'transparent'
                       }
                     }}>
-                    {' '}
-                    <Box
-                      sx={{
-                        width: '100%',
-                        display: 'flex',
-                        justifyContent: 'center',
-                        backgroundColor: 'white'
-                      }}>
-                      <MenuItem
-                        sx={{ py: 0 }}
-                        selected={false}
-                        onClick={handleClose}
-                        disableGutters>
-                        {item.subTitles.map((subItem, index) => {
-                          return (
-                            <Box sx={listItemStyle} key={index}>
-                              <NavLink to={subItem.path} style={navLinkStyle}>
-                                <Box
-                                  sx={{
-                                    '&:hover': {
-                                      boxShadow: '0 0 6px 2px #b7b7b7',
-                                      '&>img': {
-                                        transform: 'scale(1.2)',
-                                        transition: 'transform 10s'
-                                      }
-                                    },
-                                    overflow: 'hidden',
-                                    height: '100px',
-                                    width: '200px',
-                                    borderRadius: '10px',
-                                    my: 1
-                                  }}>
-                                  <img
-                                    src={subItem.img}
-                                    alt="image"
-                                    style={{
-                                      height: '100px',
-                                      width: '200px'
-                                    }}
-                                  />
-                                </Box>
-                                {subItem.title}
-                              </NavLink>
+                    {item.subTitles.map((subItem, index) => {
+                      return (
+                        <MenuItem
+                          sx={{
+                            py: 0,
+                            display: 'flex',
+                            backgroundColor: 'transparent',
+                            flexDirection: 'column',
+
+                            '&:hover': {
+                              backgroundColor: 'transparent'
+                            },
+                            '&:hover a': {
+                              color: 'black'
+                            },
+                            '& a': {
+                              fontSize: '14px',
+                              color: 'white',
+                              textDecoration: 'none'
+                            }
+                          }}
+                          key={index}
+                          selected={false}
+                          onClick={handleClose}
+                          disableGutters>
+                          <NavLink
+                            to={subItem.path}
+                            style={{
+                              background: 'rgba(148, 148, 148, 0.45)',
+                              boxShadow: ' 0 4px 30px rgba(0, 0, 0, 0.1)',
+                              backdropFilter: 'blur(3px)'
+                            }}>
+                            <Box
+                              sx={{
+                                '&:hover': {
+                                  '&>img': {
+                                    transform: 'scale(1.2)',
+                                    transition: 'transform 10s'
+                                  }
+                                },
+                                overflow: 'hidden',
+                                py: 1,
+                                px: 2,
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center',
+                                backgroundColor: 'transparent',
+
+                                borderRadius: '10px',
+                                my: 1,
+                                '&>img': {
+                                  height: '50px',
+                                  width: '100px'
+                                }
+                              }}>
+                              <img
+                                src={subItem.img}
+                                alt="image"
+                                style={{ height: '50px', width: '100px', marginBottom: '2px' }}
+                              />
+                              {subItem.title}
                             </Box>
-                          );
-                        })}
-                      </MenuItem>
-                    </Box>
+                          </NavLink>
+                        </MenuItem>
+                      );
+                    })}
                   </Menu>
                 </NavLink>
               </Box>

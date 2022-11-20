@@ -1,36 +1,26 @@
+// MUI
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import CircleIcon from '@mui/icons-material/Circle';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-import Divider from '@mui/material/Divider';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import { SxProps } from '@mui/material/styles';
+// Components and background images
+import returnBg from '../../assets/backgrounds/returnBg.jpg';
+import Title from '../../components/body/title/Title';
 
 const ReturnDelivery = (): JSX.Element => {
   const theme = useTheme();
-  const isMobil = useMediaQuery(theme.breakpoints.down('md'));
   const iconStyle: SxProps = {
-    color: theme.palette.common.brown2,
+    color: theme.palette.common.brown,
     mr: 1
   };
 
   return (
-    <Box sx={{ p: 4, my: 4 }}>
-      <Box sx={{ textAlign: 'center', mb: 4 }}>
-        <Typography variant="h1">İade ve Değişim Prosedürü</Typography>
-        <Divider
-          sx={{
-            width: isMobil ? '90%' : '600px',
-            mt: 1,
-            mx: 'auto',
-            backgroundColor: theme.palette.common.lightGray2,
-            borderBottomWidth: 2
-          }}
-        />
-      </Box>
-      <Box>
+    <Box sx={{ mb: 4 }}>
+      <Title title="İade ve Değişim" image={returnBg} color="white" />
+      <Box sx={{ p: 4 }}>
         <Typography sx={{ mb: 2 }}>
           Aldığınız ürünlerin ayıplı mal olarak değerlendirilemeyeceği durumlarda ilgili kanun
           hükümleri gereği değişimi <span style={{ fontWeight: 'bold' }}>yapılmamaktadır</span>.

@@ -13,7 +13,7 @@ const Navbar = (): JSX.Element => {
   const isMobil = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
-    <AppBar position="static">
+    <AppBar position="fixed" sx={{ backgroundColor: 'transparent' }}>
       <NavHeader />
       <Box
         sx={{
@@ -21,7 +21,9 @@ const Navbar = (): JSX.Element => {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          backgroundColor: '#fff'
+          background: 'rgba(148, 148, 148, 0.45)',
+          boxShadow: ' 0 4px 30px rgba(0, 0, 0, 0.1)',
+          backdropFilter: 'blur(3px)'
         }}>
         {isMobil ? <DrawerComp /> : <LargeToolbar />}
       </Box>
