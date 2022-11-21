@@ -18,10 +18,10 @@ const Privacy = (): JSX.Element => {
   };
 
   return (
-    <Box sx={{ mb: 4 }}>
+    <Box>
       <Title image={collusionBg} color="white" title="Gizlilik Politikamız" />
       <Box>
-        <List>
+        <List sx={{ my: 6 }}>
           <ListItem>
             <CircleIcon sx={iconStyle} />
             <Typography>

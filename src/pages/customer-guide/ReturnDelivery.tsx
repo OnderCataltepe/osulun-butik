@@ -20,7 +20,7 @@ const ReturnDelivery = (): JSX.Element => {
   return (
     <Box sx={{ mb: 4 }}>
       <Title title="İade ve Değişim" image={returnBg} color="white" />
-      <Box sx={{ p: 4 }}>
+      <Box sx={{ p: 4, my: 4 }}>
         <Typography sx={{ mb: 2 }}>
           Aldığınız ürünlerin ayıplı mal olarak değerlendirilemeyeceği durumlarda ilgili kanun
           hükümleri gereği değişimi <span style={{ fontWeight: 'bold' }}>yapılmamaktadır</span>.

@@ -2,6 +2,7 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import MuiLink from '@mui/material/Link';
+import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
@@ -37,11 +38,11 @@ const Footer = () => {
   return (
     <footer
       style={{
-        padding: '20px 10px',
+        padding: '0 5px',
         backgroundColor: 'black',
         width: '100%'
       }}>
-      <Grid container spacing={2}>
+      <Grid container spacing={2} sx={{ py: 2 }}>
         <Grid item xs={6} md={3}>
           <Paper sx={paperStyle}>
             <img alt="kartvisit" src={logoFooter} style={{ width: '80%', height: 'auto' }} />
@@ -111,6 +112,11 @@ const Footer = () => {
           </Paper>
         </Grid>
       </Grid>
+      <Divider sx={{ backgroundColor: theme.palette.common.gray2, my: 1, width: '100%' }} />
+      <Typography variant="body2" sx={{ color: theme.palette.common.gray2, pb: 1 }}>
+        {' '}
+        2022 Sulun Boutique Limited. All right reserved.
+      </Typography>
     </footer>
   );
 };

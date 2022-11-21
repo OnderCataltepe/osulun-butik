@@ -13,6 +13,7 @@ import Partnerships from './pages/corporate/Partnership';
 import SalesPoints from './pages/corporate/SalesPoints';
 import Contacts from './pages/corporate/Contacts';
 import Press from './pages/corporate/Press';
+import OurStory from './pages/corporate/OurStory';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -69,6 +70,10 @@ const router = createBrowserRouter([
       {
         path: 'basinda-biz',
         element: <Press />
+      },
+      {
+        path: 'hikayemiz',
+        element: <OurStory />
       }
     ]
   }

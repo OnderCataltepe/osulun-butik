@@ -1,10 +1,10 @@
 // MUI
-import Animate from '../../components/animations/ScrollAnimations';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 // Components, backgroundImages and content constants
+import Animate from '../../components/animations/ScrollAnimations';
 import Title from '../../components/body/title/Title';
 import { partners } from './constants';
 import partnersBg from '../../assets/backgrounds/partnersBg.jpg';
