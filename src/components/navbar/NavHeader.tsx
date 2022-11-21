@@ -29,7 +29,7 @@ const NavHeader = (): JSX.Element => {
       <Box>
         <Typography variant="subText">TÜM ÜRÜNLERİMİZDE ÜCRETSİZ KARGO</Typography>
       </Box>
-      {!isMobil && <NavIcons />}
+      {!isMobil && <NavIcons color={theme.palette.common.gray2} />}
     </Box>
   );
 };

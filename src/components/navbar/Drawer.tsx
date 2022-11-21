@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../../assets/sülünButikLogo.jpg';
+import sulunImg from '../../assets/sulunImg.png';
 import { navPages } from './constants';
 
 import NavIcons from './NavIcons';
@@ -38,12 +38,13 @@ const DrawerComp = (): JSX.Element => {
     <Toolbar sx={{ justifyContent: 'space-between', width: '100%' }} disableGutters>
       <Drawer
         anchor="left"
+        variant="persistent"
         PaperProps={{
-          sx: { width: '100%' }
+          sx: { width: '100%', height: '100vh' }
         }}
         open={openDrawer}
         onClose={() => setOpenDrawer(false)}>
-        <List sx={{ width: '100%', pt: 12 }}>
+        <List sx={{ width: '100%', pt: 6 }}>
           {navPages.map((item, index) => {
             const idNumber = index + 1;
             return (
@@ -96,18 +97,37 @@ const DrawerComp = (): JSX.Element => {
           })}
         </List>
       </Drawer>
-      <IconButton onClick={() => setOpenDrawer(!openDrawer)}>
-        {openDrawer ? (
-          <CloseIcon sx={{ color: theme.palette.common.gray2, zIndex: 9999 }} />
-        ) : (
-          <MenuIcon sx={{ color: theme.palette.common.gray2 }} />
-        )}
-      </IconButton>
-      <Box sx={{ zIndex: 9999 }}>
-        <img src={logo} alt="logo" width="200" height="auto" />
-      </Box>
-      <Box sx={{ zIndex: 9999 }}>
-        <NavIcons />
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          width: '100%',
+          px: 2,
+          zIndex: 1400
+        }}>
+        <IconButton onClick={() => setOpenDrawer(!openDrawer)}>
+          {openDrawer ? (
+            <CloseIcon sx={{ color: openDrawer ? theme.palette.common.gray2 : 'white' }} />
+          ) : (
+            <MenuIcon sx={{ color: openDrawer ? theme.palette.common.gray2 : 'white' }} />
+          )}
+        </IconButton>
+
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          <img src={sulunImg} alt="logo" width="35px" height="auto" />
+          <p
+            style={{
+              fontSize: '25px',
+              paddingLeft: '3px',
+              color: openDrawer ? theme.palette.common.gray2 : 'white',
+              fontFamily: 'initial'
+            }}>
+            SÜLÜN BUTİK
+          </p>
+        </Box>
+
+        <NavIcons color={openDrawer ? theme.palette.common.gray2 : 'white'} />
       </Box>
     </Toolbar>
   );

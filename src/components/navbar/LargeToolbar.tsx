@@ -23,7 +23,7 @@ const LargeToolbar = (): JSX.Element => {
     px: 1.5,
     py: 0,
     '&:hover a': {
-      color: 'black !important'
+      color: `${theme.palette.common.orange} !important`
     }
   };
 
@@ -66,12 +66,13 @@ const LargeToolbar = (): JSX.Element => {
             style={{
               fontSize: '25px',
               paddingLeft: '3px',
-              color: theme.palette.common.gray2,
+              color: 'white',
               fontFamily: 'initial'
             }}>
             SÜLÜN BUTİK
           </p>
         </Box>
+
         <Box
           sx={{
             display: 'flex',
@@ -98,7 +99,7 @@ const LargeToolbar = (): JSX.Element => {
                     PaperProps={{
                       sx: {
                         pointerEvents: 'auto',
-                        py: 2,
+                        py: 1.9,
                         boxShadow: 'none',
                         backgroundColor: 'transparent'
                       }
@@ -109,14 +110,13 @@ const LargeToolbar = (): JSX.Element => {
                           sx={{
                             py: 0,
                             display: 'flex',
-                            backgroundColor: 'transparent',
+                            backgroundColor: 'inset',
                             flexDirection: 'column',
-
-                            '&:hover': {
-                              backgroundColor: 'transparent'
-                            },
+                            background: 'rgba(0, 0, 0, 0.75)',
+                            boxShadow: ' 0 4px 30px rgba(0, 0, 0, 0.1)',
+                            backdropFilter: 'blur(3px)',
                             '&:hover a': {
-                              color: 'black'
+                              color: theme.palette.common.orange
                             },
                             '& a': {
                               fontSize: '14px',
@@ -128,19 +128,13 @@ const LargeToolbar = (): JSX.Element => {
                           selected={false}
                           onClick={handleClose}
                           disableGutters>
-                          <NavLink
-                            to={subItem.path}
-                            style={{
-                              background: 'rgba(148, 148, 148, 0.45)',
-                              boxShadow: ' 0 4px 30px rgba(0, 0, 0, 0.1)',
-                              backdropFilter: 'blur(3px)'
-                            }}>
+                          <NavLink to={subItem.path}>
                             <Box
                               sx={{
                                 '&:hover': {
                                   '&>img': {
                                     transform: 'scale(1.2)',
-                                    transition: 'transform 10s'
+                                    transition: 'transform 8s'
                                   }
                                 },
                                 overflow: 'hidden',
@@ -149,20 +143,15 @@ const LargeToolbar = (): JSX.Element => {
                                 display: 'flex',
                                 flexDirection: 'column',
                                 alignItems: 'center',
-                                backgroundColor: 'transparent',
-
                                 borderRadius: '10px',
                                 my: 1,
                                 '&>img': {
                                   height: '50px',
-                                  width: '100px'
+                                  width: '100px',
+                                  marginBottom: '2px'
                                 }
                               }}>
-                              <img
-                                src={subItem.img}
-                                alt="image"
-                                style={{ height: '50px', width: '100px', marginBottom: '2px' }}
-                              />
+                              <img src={subItem.img} alt="image" />
                               {subItem.title}
                             </Box>
                           </NavLink>

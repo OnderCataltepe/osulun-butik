@@ -21,7 +21,7 @@ const Navbar = (): JSX.Element => {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          background: 'rgba(148, 148, 148, 0.45)',
+          background: 'rgba(0, 0, 0, 0.75)',
           boxShadow: ' 0 4px 30px rgba(0, 0, 0, 0.1)',
           backdropFilter: 'blur(3px)'
         }}>

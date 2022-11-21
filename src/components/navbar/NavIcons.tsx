@@ -3,18 +3,20 @@ import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack';
-
-const NavIcons = (): JSX.Element => {
+interface NProps {
+  color: string;
+}
+const NavIcons = ({ color }: NProps): JSX.Element => {
   return (
     <Stack direction="row" spacing={1}>
       <IconButton aria-label="search">
-        <SearchOutlinedIcon fontSize="small" />
+        <SearchOutlinedIcon sx={{ color: color }} fontSize="small" />
       </IconButton>
       <IconButton aria-label="account">
-        <PersonOutlineOutlinedIcon fontSize="small" />
+        <PersonOutlineOutlinedIcon sx={{ color: color }} fontSize="small" />
       </IconButton>
       <IconButton aria-label="shopping card">
-        <ShoppingCartOutlinedIcon fontSize="small" />
+        <ShoppingCartOutlinedIcon sx={{ color: color }} fontSize="small" />
       </IconButton>
     </Stack>
   );
