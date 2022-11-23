@@ -13,13 +13,17 @@ const breakpoints = {
 const baseTheme = createTheme({
   ...breakpoints,
   palette: {
+    primary: {
+      light: '#212121',
+      main: '#161616',
+      dark: '#000000'
+    },
+
     common: {
       lightGray1: '#f9f9f9',
       lightGray2: '#F1F1F1',
       gray1: '#1A1A1A',
       gray2: '#707070',
-      black: '#000000',
-      white: '#FFFFFF',
       brown: '#BB7946',
       orange: '#F15123',
       red: '#933E38'

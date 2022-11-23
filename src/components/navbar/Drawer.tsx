@@ -48,8 +48,8 @@ const DrawerComp = (): JSX.Element => {
           {navPages.map((item, index) => {
             const idNumber = index + 1;
             return (
-              <>
-                <ListItem key={index} sx={{ p: 0 }}>
+              <div key={item.path}>
+                <ListItem sx={{ p: 0 }}>
                   {item.expand ? (
                     <Accordion
                       sx={{ width: '100%' }}
@@ -67,9 +67,9 @@ const DrawerComp = (): JSX.Element => {
                       </AccordionSummary>
                       <AccordionDetails>
                         <List sx={{ display: 'flex', flexDirection: 'column', pl: 4, py: 0 }}>
-                          {item.subTitles.map((subItem, index) => {
+                          {item.subTitles.map((subItem) => {
                             return (
-                              <ListItem key={index} sx={{ pb: 1 }} disablePadding>
+                              <ListItem key={subItem.path} sx={{ pb: 1 }} disablePadding>
                                 <Link
                                   style={{ color: 'black', textDecoration: 'none' }}
                                   to={subItem.path}>
@@ -92,7 +92,7 @@ const DrawerComp = (): JSX.Element => {
                   )}
                 </ListItem>
                 <Divider />
-              </>
+              </div>
             );
           })}
         </List>
