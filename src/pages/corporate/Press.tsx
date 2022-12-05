@@ -1,12 +1,11 @@
 // MUI
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import Box from '@mui/material/Box';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 // Components and background images
 import pressBg from '../../assets/backgrounds/pressBg.jpg';
-import Title from '../../components/body/title/Title';
+import PageLayout from '../../layouts/PageLayout';
 // Press images
 import sulun1 from '../../assets/press/sulun1.jpg';
 import sulun2 from '../../assets/press/sulun2.jpg';
@@ -22,8 +21,7 @@ const Press = () => {
   const isMobil = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
-    <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <Title image={pressBg} title="Basında Biz" color="white" />
+    <PageLayout image={pressBg} title="Basında Biz" color="white">
       <ImageList sx={{ width: '80%', my: 6 }} variant="masonry" cols={isMobil ? 1 : 3} gap={8}>
         {itemData.map((item, index) => (
           <ImageListItem key={index}>
@@ -36,7 +34,7 @@ const Press = () => {
           </ImageListItem>
         ))}
       </ImageList>
-    </Box>
+    </PageLayout>
   );
 };
 

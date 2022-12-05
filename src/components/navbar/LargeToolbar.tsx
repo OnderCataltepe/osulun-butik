@@ -8,7 +8,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { useTheme } from '@mui/material/styles';
 import { SxProps } from '@mui/material/styles';
 import sulunImg from '../../assets/sulunImg.png';
-
+import { navData } from '../../navigateData';
 interface ActiveType {
   isActive: boolean;
 }
@@ -78,7 +78,7 @@ const LargeToolbar = (): JSX.Element => {
             display: 'flex',
             justifyContent: 'space-evenly'
           }}>
-          {navPages.map((item, index) => {
+          {navData.map((item, index) => {
             const idNum = index + 1;
             return item.expand ? (
               <Box
@@ -88,7 +88,7 @@ const LargeToolbar = (): JSX.Element => {
                 <NavLink
                   onMouseOver={handleClick(idNum)}
                   onMouseLeave={handleClose}
-                  to={item.path}
+                  to={`kategori/${item.path}/${item.subTitles[0].path}`}
                   style={navLinkStyle}>
                   {item.title}
                   <Menu
@@ -96,6 +96,7 @@ const LargeToolbar = (): JSX.Element => {
                     anchorEl={anchorEl}
                     open={Boolean(anchorEl) && currentIndex === idNum}
                     onClose={handleClose}
+                    sx={{ pointerEvents: 'none' }}
                     PaperProps={{
                       sx: {
                         pointerEvents: 'auto',
@@ -105,6 +106,7 @@ const LargeToolbar = (): JSX.Element => {
                       }
                     }}>
                     {item.subTitles.map((subItem, index) => {
+                      if (index === 0) return null;
                       return (
                         <MenuItem
                           sx={{
@@ -128,7 +130,7 @@ const LargeToolbar = (): JSX.Element => {
                           selected={false}
                           onClick={handleClose}
                           disableGutters>
-                          <NavLink to={subItem.path}>
+                          <NavLink to={`kategori/${item.path}/${subItem.path}`}>
                             <Box
                               sx={{
                                 '&:hover': {
@@ -163,7 +165,9 @@ const LargeToolbar = (): JSX.Element => {
               </Box>
             ) : (
               <Box sx={listItemStyle} key={index}>
-                <NavLink to={item.path} style={navLinkStyle}>
+                <NavLink
+                  to={`kategori/${item.path}/${item.subTitles[0].path}`}
+                  style={navLinkStyle}>
                   {item.title}
                 </NavLink>
               </Box>

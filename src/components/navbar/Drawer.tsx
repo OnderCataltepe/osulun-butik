@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import sulunImg from '../../assets/sulunImg.png';
-import { navPages } from './constants';
+import { navData } from '../../navigateData';
 
 import NavIcons from './NavIcons';
 // MUI
@@ -45,7 +45,7 @@ const DrawerComp = (): JSX.Element => {
         open={openDrawer}
         onClose={() => setOpenDrawer(false)}>
         <List sx={{ width: '100%', pt: 6 }}>
-          {navPages.map((item, index) => {
+          {navData.map((item, index) => {
             const idNumber = index + 1;
             return (
               <div key={item.path}>
@@ -61,18 +61,21 @@ const DrawerComp = (): JSX.Element => {
                         expandIcon={expanded === `panel${idNumber}` ? <RemoveIcon /> : <AddIcon />}
                         aria-controls={`panel${index + 1}-content`}
                         id={`panel${idNumber}-header`}>
-                        <Link style={{ color: 'black', textDecoration: 'none' }} to={item.path}>
+                        <Link
+                          style={{ color: 'black', textDecoration: 'none' }}
+                          to={`kategori/${item.path}/${item.subTitles[0].path}`}>
                           {item.title}
                         </Link>
                       </AccordionSummary>
                       <AccordionDetails>
                         <List sx={{ display: 'flex', flexDirection: 'column', pl: 4, py: 0 }}>
-                          {item.subTitles.map((subItem) => {
+                          {item.subTitles.map((subItem, index) => {
+                            if (index === 0) return null;
                             return (
                               <ListItem key={subItem.path} sx={{ pb: 1 }} disablePadding>
                                 <Link
                                   style={{ color: 'black', textDecoration: 'none' }}
-                                  to={subItem.path}>
+                                  to={`kategori/${item.path}/${subItem.path}`}>
                                   {subItem.title}
                                 </Link>
                               </ListItem>
@@ -84,7 +87,9 @@ const DrawerComp = (): JSX.Element => {
                   ) : (
                     <Accordion sx={{ width: '100%' }} elevation={0} disableGutters>
                       <AccordionSummary>
-                        <Link style={{ color: 'black', textDecoration: 'none' }} to={item.path}>
+                        <Link
+                          style={{ color: 'black', textDecoration: 'none' }}
+                          to={`kategori/${item.path}/${item.subTitles[0].path}`}>
                           {item.title}
                         </Link>
                       </AccordionSummary>

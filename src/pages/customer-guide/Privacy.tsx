@@ -7,7 +7,7 @@ import CircleIcon from '@mui/icons-material/Circle';
 import { useTheme } from '@mui/material/styles';
 import { SxProps } from '@mui/material/styles';
 // Components and background images
-import Title from '../../components/body/title/Title';
+import PageLayout from '../../layouts/PageLayout';
 import collusionBg from '../../assets/backgrounds/privacyBg.png';
 
 const Privacy = (): JSX.Element => {
@@ -18,8 +18,7 @@ const Privacy = (): JSX.Element => {
   };
 
   return (
-    <Box>
-      <Title image={collusionBg} color="white" title="Gizlilik Politikamız" />
+    <PageLayout image={collusionBg} color="white" title="Gizlilik Politikamız">
       <Box>
         <List sx={{ my: 6 }}>
           <ListItem>
@@ -71,7 +70,7 @@ const Privacy = (): JSX.Element => {
           </ListItem>
         </List>
       </Box>
-    </Box>
+    </PageLayout>
   );
 };
 

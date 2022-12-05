@@ -42,7 +42,7 @@ const Footer = () => {
         backgroundColor: 'black',
         width: '100%'
       }}>
-      <Grid container spacing={2} sx={{ py: 2 }}>
+      <Grid container>
         <Grid item xs={6} md={3}>
           <Paper sx={paperStyle}>
             <img alt="kartvisit" src={logoFooter} style={{ width: '80%', height: 'auto' }} />

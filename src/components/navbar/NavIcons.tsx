@@ -6,30 +6,34 @@ import Stack from '@mui/material/Stack';
 
 import { useTheme } from '@mui/material/styles';
 import { useState } from 'react';
-
 import FormModal from '../forms/FormModal';
+import SearchModal from '../forms/SearchModal';
 
 interface NProps {
   color: string;
 }
 const NavIcons = ({ color }: NProps): JSX.Element => {
   const theme = useTheme();
-  const [open, setOpen] = useState<boolean>(false);
-  const openModal = () => setOpen(true);
-  const closeModal = () => setOpen(false);
+  const [openForm, setOpenForm] = useState<boolean>(false);
+  const [openSearch, setOpenSearch] = useState<boolean>(false);
+
+  const openFormModal = () => setOpenForm(true);
+  const closeFormModal = () => setOpenForm(false);
+  const openSearchModal = () => setOpenSearch(true);
+  const closeSearchModal = () => setOpenSearch(false);
   return (
     <Stack direction="row" spacing={1}>
-      <IconButton aria-label="search">
+      <IconButton aria-label="search" onClick={openSearchModal}>
         <SearchOutlinedIcon sx={{ color: color }} fontSize="small" />
       </IconButton>
-      <IconButton aria-label="account" onClick={openModal}>
+      <IconButton aria-label="account" onClick={openFormModal}>
         <PersonOutlineOutlinedIcon sx={{ color: color }} fontSize="small" />
       </IconButton>
       <IconButton aria-label="shopping card">
         <ShoppingCartOutlinedIcon sx={{ color: color }} fontSize="small" />
       </IconButton>
-
-      <FormModal open={open} closeModal={closeModal} />
+      <SearchModal open={openSearch} closeModal={closeSearchModal} />
+      <FormModal open={openForm} closeModal={closeFormModal} />
     </Stack>
   );
 };

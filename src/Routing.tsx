@@ -1,11 +1,7 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Layout from './layouts/Layout';
 import Home from './pages/products/Home';
-import Gates from './pages/products/Gates';
-import MagicalObjects from './pages/products/MagicalObjects';
-import Towers from './pages/products/Towers';
-import Transportation from './pages/products/Transportation';
-import Accessories from './pages/products/Accessories';
+import Category from './pages/products/Category';
 import Faq from './pages/customer-guide/Faq';
 import ReturnDelivery from './pages/customer-guide/ReturnDelivery';
 import Privacy from './pages/customer-guide/Privacy';
@@ -14,6 +10,11 @@ import SalesPoints from './pages/corporate/SalesPoints';
 import Contacts from './pages/corporate/Contacts';
 import Press from './pages/corporate/Press';
 import OurStory from './pages/corporate/OurStory';
+import Settings from './pages/user/admin/Settings';
+import InnerCategory from './pages/products/InnerCategory';
+import DetailedProduct from './pages/products/DetailedProduct';
+import DetailedCard from './components/cards/DetailedCard';
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -22,26 +23,6 @@ const router = createBrowserRouter([
       {
         path: 'home',
         element: <Home />
-      },
-      {
-        path: 'gecitler',
-        element: <Gates />
-      },
-      {
-        path: 'sihirli-nesneler',
-        element: <MagicalObjects />
-      },
-      {
-        path: 'kuleler',
-        element: <Towers />
-      },
-      {
-        path: 'ulasim',
-        element: <Transportation />
-      },
-      {
-        path: 'aksesuarlar',
-        element: <Accessories />
       },
       {
         path: 'sikca-sorulan-sorular',
@@ -74,6 +55,21 @@ const router = createBrowserRouter([
       {
         path: 'hikayemiz',
         element: <OurStory />
+      },
+      {
+        path: 'user/settings',
+        element: <Settings />
+      },
+      { path: '/urun/:detailedId', element: <DetailedCard /> },
+      {
+        path: 'kategori/:multiId',
+        element: <Category />,
+        children: [
+          {
+            path: ':innerId',
+            element: <InnerCategory />
+          }
+        ]
       }
     ]
   }

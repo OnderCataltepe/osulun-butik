@@ -8,7 +8,7 @@ import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 // Components, backgrounds and page constants
 import salesPointsBg from '../../assets/backgrounds/salesPointsBg.jpg';
-import Title from '../../components/body/title/Title';
+import PageLayout from '../../layouts/PageLayout';
 import { salesPointsDetails } from './constants';
 
 const SalesPoints = (): JSX.Element => {
@@ -16,8 +16,7 @@ const SalesPoints = (): JSX.Element => {
   const isMobil = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <Title image={salesPointsBg} color="white" title="Satış Noktalarımız" />
+    <PageLayout image={salesPointsBg} color="white" title="Satış Noktalarımız">
       <List
         sx={{
           display: 'flex',
@@ -43,7 +42,7 @@ const SalesPoints = (): JSX.Element => {
           );
         })}
       </List>
-    </Box>
+    </PageLayout>
   );
 };
 

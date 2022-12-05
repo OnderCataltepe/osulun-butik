@@ -8,7 +8,7 @@ import { useTheme } from '@mui/material/styles';
 import { SxProps } from '@mui/material/styles';
 // Components and background images
 import returnBg from '../../assets/backgrounds/returnBg.jpg';
-import Title from '../../components/body/title/Title';
+import PageLayout from '../../layouts/PageLayout';
 
 const ReturnDelivery = (): JSX.Element => {
   const theme = useTheme();
@@ -18,8 +18,7 @@ const ReturnDelivery = (): JSX.Element => {
   };
 
   return (
-    <Box sx={{ mb: 4 }}>
-      <Title title="İade ve Değişim" image={returnBg} color="white" />
+    <PageLayout title="İade ve Değişim" image={returnBg} color="white">
       <Box sx={{ p: 4, my: 4 }}>
         <Typography sx={{ mb: 2 }}>
           Aldığınız ürünlerin ayıplı mal olarak değerlendirilemeyeceği durumlarda ilgili kanun
@@ -75,7 +74,7 @@ const ReturnDelivery = (): JSX.Element => {
           gönderilen ürünler, satış yapılan adrese tutanak ile iade edilecektir.
         </Typography>
       </Box>
-    </Box>
+    </PageLayout>
   );
 };
 

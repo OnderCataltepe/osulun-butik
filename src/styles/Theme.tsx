@@ -89,7 +89,6 @@ const baseTheme = createTheme({
     MuiMenu: {
       styleOverrides: {
         root: {
-          pointerEvents: 'none',
           width: '100%'
         }
       }

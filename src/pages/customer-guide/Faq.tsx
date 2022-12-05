@@ -8,7 +8,7 @@ import Box from '@mui/material/Box';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 // Components and background images
-import Title from '../../components/body/title/Title';
+import PageLayout from '../../layouts/PageLayout';
 import sssBg from '../../assets/backgrounds/sssBg.jpg';
 
 interface Questions {
@@ -39,13 +39,7 @@ const Faq = (): JSX.Element => {
   const isMobil = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center'
-      }}>
-      <Title image={sssBg} title="Sıkça Sorulan Sorular" color="white" />
+    <PageLayout image={sssBg} title="Sıkça Sorulan Sorular" color="white">
       <Box sx={{ py: 6 }}>
         {questions.map((item, index) => {
           return (
@@ -64,7 +58,7 @@ const Faq = (): JSX.Element => {
           );
         })}
       </Box>
-    </Box>
+    </PageLayout>
   );
 };
 

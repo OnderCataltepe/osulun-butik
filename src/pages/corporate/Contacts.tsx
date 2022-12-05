@@ -3,13 +3,12 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 // Components and background images
-import Title from '../../components/body/title/Title';
 import contactsBg from '../../assets/backgrounds/contactsBg.png';
+import PageLayout from '../../layouts/PageLayout';
 
 const Contacts = (): JSX.Element => {
   return (
-    <Box>
-      <Title color="white" image={contactsBg} title="İletişim" />
+    <PageLayout color="white" image={contactsBg} title="İletişim">
       <Container
         sx={{
           p: 6,
@@ -47,7 +46,7 @@ const Contacts = (): JSX.Element => {
           </div>
         </Box>
       </Container>
-    </Box>
+    </PageLayout>
   );
 };
 
