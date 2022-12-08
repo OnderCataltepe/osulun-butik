@@ -1,6 +1,6 @@
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { RouterProvider, createBrowserRouter, Navigate, Outlet } from 'react-router-dom';
 import Layout from './layouts/Layout';
-import Home from './pages/products/Home';
+import Home from './pages/home/Home';
 import Category from './pages/products/Category';
 import Faq from './pages/customer-guide/Faq';
 import ReturnDelivery from './pages/customer-guide/ReturnDelivery';
@@ -12,8 +12,22 @@ import Press from './pages/corporate/Press';
 import OurStory from './pages/corporate/OurStory';
 import Settings from './pages/user/admin/Settings';
 import InnerCategory from './pages/products/InnerCategory';
-import DetailedProduct from './pages/products/DetailedProduct';
+import UserSettings from './pages/user/UserSettings';
 import DetailedCard from './components/cards/DetailedCard';
+import { useAppSelector } from './redux/hooks/reduxHooks';
+import { useEffect } from 'react';
+const ProtectedRoute = () => {
+  const user = useAppSelector((state) => state.user);
+  useEffect(() => {
+    console.log(user);
+  }, []);
+
+  if (!user.isAuth) {
+    return <Navigate to="/" replace />;
+  }
+
+  return <Outlet />;
+};
 
 const router = createBrowserRouter([
   {
@@ -21,8 +35,12 @@ const router = createBrowserRouter([
     element: <Layout />,
     children: [
       {
-        path: 'home',
+        index: true,
         element: <Home />
+      },
+      {
+        element: <ProtectedRoute />,
+        children: [{ path: 'settings', element: <UserSettings /> }]
       },
       {
         path: 'sikca-sorulan-sorular',
