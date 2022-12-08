@@ -36,6 +36,20 @@ export const getProducts = createAsyncThunk('product/get', async () => {
   return datas;
 });
 
+export const getElements = async () => {
+  const datas: any[] = [];
+  const ref = collection(db, 'products');
+  await getDocs(ref).then((snap) => {
+    snap.forEach((doc) =>
+      datas.push({
+        id: doc.id,
+        ...doc.data()
+      })
+    );
+  });
+  return datas;
+};
+
 export const deleteProduct = createAsyncThunk('product/delete', async (id: string) => {
   const ref = doc(db, 'products', id);
   await deleteDoc(ref);

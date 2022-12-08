@@ -91,7 +91,7 @@ const Footer = () => {
                 />
               </MuiLink>
               <MuiLink target="_blank" href="https://www.twitter.com" rel="noreferrer">
-                <TwitterIcon />
+                <TwitterIcon sx={{ color: '#1C9CEA' }} />
               </MuiLink>
               <MuiLink target="_blank" href="https://www.facebook.com" rel="noreferrer">
                 <FacebookIcon

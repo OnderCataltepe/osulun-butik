@@ -31,8 +31,7 @@ const Contacts = (): JSX.Element => {
           </Typography>
           <Typography>
             {' '}
-            <span style={{ fontWeight: 'bold' }}>E-posta:</span> sUlUn_Butiq34@mynet.com.tr (iki u
-            harfi arasındaki küçük L)
+            <span style={{ fontWeight: 'bold' }}>E-posta:</span> sUlUn_Butiq34@hotmail.com.tr
           </Typography>
         </Box>
         <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center', mt: 4 }}>

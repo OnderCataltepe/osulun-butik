@@ -52,11 +52,13 @@ const OurStory = () => {
             </Box>
           </Animate.FadeRight>
           <Animate.FadeLeft>
-            <Typography variant="body1" sx={{ color: 'block', fontWeight: 'bold' }}>
+            <Typography
+              variant="body1"
+              sx={{ color: 'block', fontWeight: 'bold', textAlign: 'center' }}>
               Osman Ziya Sülün, 1923`te İstanbul`da doğdu. Çocukluğunda yoksul bir hayat süren
-              Sülün, eğitimini yarıda bıraktı ve çeşitli işlerde çalıştı. Vizyoner kişiliği,
-              öğrenmeye olan tutkusu sayesinde birçok iş dalında genç yaşta başarılı girişimleri
-              oldu.
+              Sülün, eğitimini yarıda bırakmak zorunda kaldı ve erken yaşta çeşitli işlerde çalıştı.
+              Vizyoner kişiliği, öğrenmeye olan tutkusu sayesinde birçok iş dalında genç yaşta
+              deneyimler edindi. İş seçmedi, çalıştığı her yeri aynı zamanda bir okul olarak gördü.
             </Typography>
           </Animate.FadeLeft>
         </Box>
@@ -79,12 +81,12 @@ const OurStory = () => {
           </Animate.FadeLeft>
           <Animate.FadeRight>
             <Typography variant="body1" sx={{ color: 'block', fontWeight: 'bold' }}>
-              Mübadeleye tabi tutulmayan İstanbul’un rum nüfusu zamana yayılarak azalırken kimi iş
-              kollarında büyük boşluklar oluşmuştu. Kendisinden çok şey öğrendiği Kumkapılı rum
+              Mübadeleye tabi tutulmayan İstanbul’un Rum nüfusu zamana yayılarak azalırken kimi iş
+              kollarında büyük boşluklar oluşmuştu. Kendisinden çok şey öğrendiği Kumkapılı Rum
               Aleko’nun şehri terk etmesi ile birlikte Sülün’ün çıraklık dönemi kapanmıştı.
               Özellikle 1950 sonrası Anadolu’dan İstanbul’a yaşanan göç dalgasıyla İstanbul büyüdü,
               Sülün Osman büyüdü. Genel kanının aksine o, göç eden insanlarda ezici bir enginlik,
-              İstanbul’da ise tiz bir darlık görüyordu. İş yaşamını ve sosyal sorumluluklarını
+              İstanbul’da ise tiz bir darlık görüyordu. İş yaşamını ve sosyal sorumluluk projelerini
               taşradan gelen insanlar üzerine kurguladı.
             </Typography>
           </Animate.FadeRight>
@@ -112,9 +114,9 @@ const OurStory = () => {
           </Animate.FadeRight>
           <Animate.FadeLeft>
             <Typography variant="body1" sx={{ color: 'block', fontWeight: 'bold' }}>
-              Başarılı, paradigmaları altüst eden her insan gibi Sülün’ün de önüne engeller koyuldu.
-              Aralıklarla hapis yattı, iftiralar uğradı ama yılmadı. Büyük bir marka yaratmak kolay
-              değildi ve o, bu engelleri büyüklüğünün nişaneleri olarak gördü.
+              Başarılı, paradigmaları altüst eden her insana yapıldığı gibi Sülün’ün de önüne
+              engeller koyuldu. Aralıklarla hapis yattı, iftiralar uğradı ama yılmadı. Büyük bir
+              marka yaratmak kolay değildi ve o, bu engelleri büyüklüğünün nişaneleri olarak gördü.
             </Typography>
           </Animate.FadeLeft>
         </Box>

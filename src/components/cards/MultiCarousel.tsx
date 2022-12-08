@@ -5,7 +5,7 @@ import type { ProductType } from '../../types/types';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 
 interface MProps {
   contents: ProductType[];
@@ -20,17 +20,14 @@ const MultiCarousel = ({ contents }: MProps): JSX.Element => {
     <div
       key={product.id}
       style={{
-        width: isMobil ? '250px' : '400px',
-
+        width: isMobil ? '200px' : '300px',
+        padding: 4,
         height: '100%'
       }}>
       <ProductCard {...product} />
     </div>
   ));
 
-  useEffect(() => {
-    console.log(carItems);
-  }, []);
   return (
     <Box
       sx={{
@@ -38,10 +35,11 @@ const MultiCarousel = ({ contents }: MProps): JSX.Element => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        '& >button': {
+        '& >div >button': {
           border: 'none',
           backgroundColor: 'transparent',
-          fontSize: 50,
+          color: theme.palette.common.gray2,
+          fontSize: isMobil ? 40 : 60,
           cursor: 'pointer'
         }
       }}>

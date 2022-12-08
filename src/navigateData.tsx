@@ -1,10 +1,10 @@
-import bridgeImg from './assets/products/gatesAndBridges/bridges/bogazici/bogazici1.jpg';
-import cityGateImg from './assets/products/gatesAndBridges/cityGates/ankara/konya/konya1.jpg';
-import shipImg from './assets/products/transportation/seaway/vapur1.jpg';
-import busImg from './assets/products/transportation/road/bus/bus1.jpg';
-import trainImg from './assets/products/transportation/railway/marmaray/marmaray1.jpg';
-import watchImg from './assets/products/accessories/watches/dolmabahceWatch/dolmabahce2.jpg';
-import sculptureImg from './assets/products/accessories/sculptures/troya/troya1.jpg';
+import bridgeImg from './assets/subMenu/bridge.png';
+import cityGateImg from './assets/subMenu/cityGate.png';
+import shipImg from './assets/subMenu/ship.png';
+import busImg from './assets/subMenu/bus.png';
+import trainImg from './assets/subMenu/train.png';
+import clockImg from './assets/subMenu/clock.png';
+import sculptureImg from './assets/subMenu/sculpture.png';
 import towerBg from './assets/backgrounds/towersBg.jpg';
 import gatesBg from './assets/backgrounds/gatesBg.jpg';
 import accessoriesBg from './assets/backgrounds/accessoriesBg.jpg';
@@ -17,7 +17,7 @@ export const navData: NavType[] = [
   {
     id: 0,
     expand: true,
-    title: 'Geçitler',
+    title: 'GEÇİTLER',
     path: 'gecitler',
     category: ['geçit'],
     bgImg: gatesBg,
@@ -36,7 +36,7 @@ export const navData: NavType[] = [
   {
     id: 1,
     expand: true,
-    title: 'Ulaşım',
+    title: 'ULAŞIM',
     path: 'ulasim',
     category: ['ulaşım'],
     bgImg: transportationBg,
@@ -68,7 +68,7 @@ export const navData: NavType[] = [
   {
     id: 2,
     expand: false,
-    title: 'Kuleler',
+    title: 'KULELER',
     path: 'kuleler',
     bgImg: towerBg,
     subTitles: [
@@ -76,7 +76,7 @@ export const navData: NavType[] = [
         id: 0,
         title: 'Tüm Ürünler',
         path: 'tum-kuleler',
-        img: watchImg,
+        img: clockImg,
         category: ['kule']
       }
     ],
@@ -85,7 +85,7 @@ export const navData: NavType[] = [
   {
     id: 3,
     expand: false,
-    title: 'Sihirli Nesneler',
+    title: 'SİHİRLİ NESNELER',
     path: 'sihirli-nesneler',
     bgImg: magicBg,
     subTitles: [
@@ -93,7 +93,7 @@ export const navData: NavType[] = [
         id: 0,
         title: 'Tüm Ürünler',
         path: 'tum-sihirli-nesneler',
-        img: watchImg,
+        img: clockImg,
         category: ['sihirli']
       }
     ],
@@ -102,7 +102,7 @@ export const navData: NavType[] = [
   {
     id: 4,
     expand: true,
-    title: 'Aksesuarlar',
+    title: 'AKSESUARLAR',
     path: 'aksesuarlar',
     category: ['aksesuar'],
     bgImg: accessoriesBg,
@@ -111,10 +111,10 @@ export const navData: NavType[] = [
         id: 0,
         title: 'Tüm Ürünler',
         path: 'tum-aksesuarlar',
-        img: watchImg,
+        img: clockImg,
         category: ['aksesuar']
       },
-      { id: 1, title: 'Saatler', path: 'saatler', img: watchImg, category: ['aksesuar', 'saat'] },
+      { id: 1, title: 'Saatler', path: 'saatler', img: clockImg, category: ['aksesuar', 'saat'] },
       {
         id: 2,
         title: 'Heykeller',

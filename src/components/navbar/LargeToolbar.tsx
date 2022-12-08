@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { navPages } from './constants';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import Toolbar from '@mui/material/Toolbar';
 import Box from '@mui/material/Box';
 import Menu from '@mui/material/Menu';
@@ -17,11 +16,17 @@ const LargeToolbar = (): JSX.Element => {
   const theme = useTheme();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const navigate = useNavigate();
+
   const listItemStyle: SxProps = {
     display: 'flex',
     justifyContent: 'center',
     px: 1.5,
     py: 0,
+    fontSize: 14,
+    '& a:focus': {
+      outline: 'none'
+    },
     '&:hover a': {
       color: `${theme.palette.common.orange} !important`
     }
@@ -40,14 +45,16 @@ const LargeToolbar = (): JSX.Element => {
   };
 
   const activeNavLink: React.CSSProperties = {
-    color: 'black',
+    color: theme.palette.common.orange,
     textDecoration: 'none',
-    textAlign: 'center'
+    textAlign: 'center',
+    borderColor: 'red'
   };
   const nonActiveNavLink: React.CSSProperties = {
     color: 'inherit',
     textDecoration: 'none',
-    textAlign: 'center'
+    textAlign: 'center',
+    borderColor: 'blue'
   };
 
   const navLinkStyle = ({ isActive }: ActiveType) => (isActive ? activeNavLink : nonActiveNavLink);
@@ -60,14 +67,17 @@ const LargeToolbar = (): JSX.Element => {
           width: '100%',
           justifyContent: 'space-between'
         }}>
-        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+        <Box
+          sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}
+          onClick={() => navigate('/')}>
           <img src={sulunImg} alt="logo" width="35px" height="auto" />
           <p
             style={{
               fontSize: '25px',
-              paddingLeft: '3px',
+              paddingLeft: '5px',
               color: 'white',
-              fontFamily: 'initial'
+              fontFamily: 'initial',
+              userSelect: 'none'
             }}>
             SÜLÜN BUTİK
           </p>
@@ -78,6 +88,11 @@ const LargeToolbar = (): JSX.Element => {
             display: 'flex',
             justifyContent: 'space-evenly'
           }}>
+          <Box sx={listItemStyle}>
+            <NavLink to="/" style={navLinkStyle}>
+              ANASAYFA
+            </NavLink>
+          </Box>
           {navData.map((item, index) => {
             const idNum = index + 1;
             return item.expand ? (

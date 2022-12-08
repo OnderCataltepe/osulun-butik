@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import sulunImg from '../../assets/sulunImg.png';
 import { navData } from '../../navigateData';
 
@@ -27,12 +27,16 @@ import RemoveIcon from '@mui/icons-material/Remove';
 
 const DrawerComp = (): JSX.Element => {
   const theme = useTheme();
+  const navigate = useNavigate();
 
   const [openDrawer, setOpenDrawer] = useState<boolean>(false);
   const [expanded, setExpanded] = useState<string | false>(false);
 
   const handleChange = (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
     setExpanded(isExpanded ? panel : false);
+  };
+  const handleClose = () => {
+    setOpenDrawer(false);
   };
   return (
     <Toolbar sx={{ justifyContent: 'space-between', width: '100%' }} disableGutters>
@@ -45,6 +49,13 @@ const DrawerComp = (): JSX.Element => {
         open={openDrawer}
         onClose={() => setOpenDrawer(false)}>
         <List sx={{ width: '100%', pt: 6 }}>
+          <Accordion sx={{ width: '100%' }} elevation={0} disableGutters>
+            <AccordionSummary>
+              <Link style={{ color: 'black', textDecoration: 'none' }} to="/" onClick={handleClose}>
+                aNASAYFA
+              </Link>
+            </AccordionSummary>
+          </Accordion>
           {navData.map((item, index) => {
             const idNumber = index + 1;
             return (
@@ -63,7 +74,8 @@ const DrawerComp = (): JSX.Element => {
                         id={`panel${idNumber}-header`}>
                         <Link
                           style={{ color: 'black', textDecoration: 'none' }}
-                          to={`kategori/${item.path}/${item.subTitles[0].path}`}>
+                          to={`kategori/${item.path}/${item.subTitles[0].path}`}
+                          onClick={handleClose}>
                           {item.title}
                         </Link>
                       </AccordionSummary>
@@ -75,7 +87,8 @@ const DrawerComp = (): JSX.Element => {
                               <ListItem key={subItem.path} sx={{ pb: 1 }} disablePadding>
                                 <Link
                                   style={{ color: 'black', textDecoration: 'none' }}
-                                  to={`kategori/${item.path}/${subItem.path}`}>
+                                  to={`kategori/${item.path}/${subItem.path}`}
+                                  onClick={handleClose}>
                                   {subItem.title}
                                 </Link>
                               </ListItem>
@@ -89,7 +102,8 @@ const DrawerComp = (): JSX.Element => {
                       <AccordionSummary>
                         <Link
                           style={{ color: 'black', textDecoration: 'none' }}
-                          to={`kategori/${item.path}/${item.subTitles[0].path}`}>
+                          to={`kategori/${item.path}/${item.subTitles[0].path}`}
+                          onClick={handleClose}>
                           {item.title}
                         </Link>
                       </AccordionSummary>
@@ -119,7 +133,12 @@ const DrawerComp = (): JSX.Element => {
           )}
         </IconButton>
 
-        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+        <Box
+          sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}
+          onClick={() => {
+            navigate('/');
+            handleClose();
+          }}>
           <img src={sulunImg} alt="logo" width="35px" height="auto" />
           <p
             style={{

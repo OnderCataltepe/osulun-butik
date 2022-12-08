@@ -69,9 +69,9 @@ export const partners: Ctype[] = [
       ' Yanlışlıkla atılan bir sms, temelinde kıymetli madenler bulunan bir ortaklığa dönüştü.  ',
     italic:
       ' "Abi ben memet benim teyzemgil izmirin köyünde zeytinlikteki ahırda yerden çıkma 1650 adet eski altin bulmuşlar osmanlı tuğrası falan var.bu altınları elimizden  cikaralim beni acil ara köyden ayrılamıyom "',
-    bgColor: '#933E38',
+    bgColor: 'white',
     img: goldSq,
     titleColor: 'black',
-    textColor: 'white'
+    textColor: 'black'
   }
 ];

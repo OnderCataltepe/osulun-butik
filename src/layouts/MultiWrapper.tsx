@@ -1,18 +1,16 @@
 /* eslint-disable react/prop-types */
-
-import { Outlet } from 'react-router-dom';
-
+// MUI
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Grid from '@mui/material/Grid';
-
+// Router
 import { NavLink } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+// Types
 import type { NavType } from '../types/types';
-
 interface ActiveType {
   isActive: boolean;
 }
-
 interface MProps {
   products: NavType;
 }
@@ -25,6 +23,7 @@ const MultiWrapper = ({ products }: MProps): JSX.Element => {
     textDecoration: 'underline',
     textAlign: 'center'
   };
+
   const nonActiveNavLink: React.CSSProperties = {
     color: 'inherit',
     textDecoration: 'none',
@@ -34,7 +33,7 @@ const MultiWrapper = ({ products }: MProps): JSX.Element => {
   const navLinkStyle = ({ isActive }: ActiveType) => (isActive ? activeNavLink : nonActiveNavLink);
 
   return (
-    <Grid container sx={{ pb: 2 }} spacing={0}>
+    <Grid container spacing={0}>
       <Grid
         item
         xs={12}
@@ -70,7 +69,6 @@ const MultiWrapper = ({ products }: MProps): JSX.Element => {
           ))}
         </ul>
       </Grid>
-
       <Grid item xs={12} md={10}>
         <Outlet />
       </Grid>

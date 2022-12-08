@@ -1,35 +1,43 @@
+// Components
+import Sorting from '../../components/forms/sorting/Sorting';
 import ProductCard from '../../components/cards/ProductCard';
+// MUI
+import { useTheme } from '@mui/material/styles';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import Sorting from '../../components/forms/sorting/Sorting';
 import Typography from '@mui/material/Typography';
+// Hooks
 import { useAppSelector, useAppDispatch } from '../../redux/hooks/reduxHooks';
-import { getProducts, ProductData } from '../../redux/reducers/productSlice';
+import { getProducts } from '../../redux/reducers/productSlice';
 import { useEffect, useState } from 'react';
-import { useTheme } from '@mui/material/styles';
 import { useParams } from 'react-router-dom';
 import { navData } from '../../navigateData';
+// Types
 import type { ProductType } from '../../types/types';
+
 const InnerCategory = (): JSX.Element => {
+  const [products, setProducts] = useState<ProductType[]>([]);
+
   const theme = useTheme();
   const { innerId } = useParams();
+  const dispatch = useAppDispatch();
+
   const pages = navData.find((item) => item.subTitles.find((product) => product.path === innerId));
   const innerPage = pages?.subTitles.find((item) => item.path === innerId);
-  const dispatch = useAppDispatch();
   const values = useAppSelector((state) => state.product.values);
 
-  const [products, setProducts] = useState<ProductType[]>([]);
   useEffect(() => {
     dispatch(getProducts());
   }, []);
+
   useEffect(() => {
     const filteredProducts = values.filter((item) =>
       innerPage?.category.every((sub) => item.category.includes(sub))
     );
     setProducts(filteredProducts);
-    console.log(innerPage);
   }, [values, innerPage?.path]);
+
   return (
     <Container fixed>
       <Box

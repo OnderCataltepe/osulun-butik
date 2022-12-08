@@ -2,6 +2,7 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+import { auth, signInWithEmailAndPassword, signOut } from '../../../firebase/config';
 
 const validationSchema = yup.object({
   email: yup
@@ -15,6 +16,14 @@ const validationSchema = yup.object({
 });
 
 const Login = () => {
+  const userLogin = async (email: string, password: string) => {
+    try {
+      const user = await signInWithEmailAndPassword(auth, email, password);
+      console.log(user);
+    } catch (err) {
+      console.error(err);
+    }
+  };
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -23,11 +32,14 @@ const Login = () => {
     validationSchema: validationSchema,
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
+      userLogin(values.email, values.password);
+      formik.resetForm();
     }
   });
 
   return (
     <div>
+      <button onClick={() => signOut(auth)}>logout</button>
       <form onSubmit={formik.handleSubmit} style={{ textAlign: 'center' }}>
         <TextField
           fullWidth

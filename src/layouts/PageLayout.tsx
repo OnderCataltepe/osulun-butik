@@ -1,3 +1,4 @@
+// MUI
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
@@ -9,8 +10,8 @@ import LanguageIcon from '@mui/icons-material/Language';
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
+// Types
 import { SxProps } from '@mui/material/styles';
-
 interface TProps {
   image: string;
   color: string;
@@ -21,6 +22,7 @@ interface TProps {
 const PageLayout = ({ image, color, title, children }: TProps) => {
   const theme = useTheme();
   const isMobil = useMediaQuery(theme.breakpoints.down('md'));
+  // styles
   const paperStyle: SxProps = {
     display: 'flex',
     alignItems: 'flex-start',
@@ -31,6 +33,7 @@ const PageLayout = ({ image, color, title, children }: TProps) => {
       mr: 1
     }
   };
+
   return (
     <Box
       sx={{
@@ -58,7 +61,7 @@ const PageLayout = ({ image, color, title, children }: TProps) => {
       </Box>
       {children}
 
-      <Grid container spacing={2} sx={{ pb: 2, borderTop: 1 }}>
+      <Grid container sx={{ p: 2, borderTop: 1 }}>
         <Grid item xs={6} md={3}>
           <Paper sx={paperStyle}>
             <div>

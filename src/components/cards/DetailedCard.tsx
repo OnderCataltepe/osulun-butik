@@ -43,20 +43,19 @@ const DetailedCard = (): JSX.Element => {
         item.id !== detailedId && newPro[0].category.some((sub) => item.category.includes(sub))
     );
     setSimilarProducts(similar);
-    console.log(similar);
     setDetailedProduct(newPro[0]);
   }, [values, detailedId]);
 
   return (
     <Container
       fixed
-      sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
+      sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', my: 8 }}>
       {detailedProduct && (
         <Card
           sx={{
             p: 2,
             my: 12,
-            mx: 4,
+
             display: 'flex',
             flexDirection: isMobil ? 'column' : 'row',
             justifyContent: 'space-between'
@@ -164,7 +163,7 @@ const DetailedCard = (): JSX.Element => {
                 </Button>
                 <input
                   style={{ textAlign: 'center', width: '20px', margin: '0 5px' }}
-                  value={count}
+                  value={detailedProduct.amount === 0 ? 0 : count}
                   readOnly
                 />
                 <Button
@@ -177,10 +176,11 @@ const DetailedCard = (): JSX.Element => {
                 </Button>
               </div>
               <Button
-                variant="contained"
+                variant="outlined"
                 size="small"
-                sx={{}}
+                sx={{ '&:hover': { backgroundColor: 'black', color: 'white' } }}
                 color="primary"
+                disabled={detailedProduct.amount === 0 ? true : false}
                 endIcon={<ShoppingCartIcon />}>
                 Sepete Ekle
               </Button>
@@ -189,8 +189,10 @@ const DetailedCard = (): JSX.Element => {
         </Card>
       )}
 
-      <Box sx={{ width: '90%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <Typography variant="h3">Benzer Ürünler</Typography>
+      <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <Typography variant="h3" sx={{ mb: 2 }}>
+          Benzer Ürünler
+        </Typography>
         {similarProducts.length > 0 && <MultiCarousel contents={similarProducts} />}
       </Box>
     </Container>

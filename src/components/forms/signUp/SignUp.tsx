@@ -5,6 +5,7 @@ import TextField from '@mui/material/TextField';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
+import { auth, setDoc, createUserWithEmailAndPassword, doc, db } from '../../../firebase/config';
 
 import FormHelperText from '@mui/material/FormHelperText';
 
@@ -26,6 +27,24 @@ const validationSchema = yup.object({
   acceptTerms: yup.bool().oneOf([true], 'Üyelik sözleşmesini kabul etmelisiniz')
 });
 const SignUp = () => {
+  const userSignUp = async (name: string, surname: string, email: string, password: string) => {
+    try {
+      const res = await createUserWithEmailAndPassword(auth, email, password);
+      const user = res.user;
+
+      await setDoc(doc(db, 'users', user.uid), {
+        uid: user.uid,
+        surname,
+        name,
+        authProvider: 'local',
+        email,
+        basket: [{ amount: 0, id: '' }]
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -38,6 +57,8 @@ const SignUp = () => {
     validationSchema: validationSchema,
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
+      userSignUp(values.name, values.surname, values.email, values.password);
+      formik.resetForm();
     }
   });
 
