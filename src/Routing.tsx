@@ -8,11 +8,12 @@ import Privacy from './pages/customer-guide/Privacy';
 import Partnerships from './pages/corporate/Partnership';
 import SalesPoints from './pages/corporate/SalesPoints';
 import Contacts from './pages/corporate/Contacts';
+import UserBasket from './pages/user/customer/UserBasket';
 import Press from './pages/corporate/Press';
 import OurStory from './pages/corporate/OurStory';
 import Settings from './pages/user/admin/Settings';
 import InnerCategory from './pages/products/InnerCategory';
-import UserSettings from './pages/user/UserSettings';
+import UserSettings from './pages/user/customer/UserSettings';
 import DetailedCard from './components/cards/DetailedCard';
 import { useAppSelector } from './redux/hooks/reduxHooks';
 import { useEffect } from 'react';
@@ -40,8 +41,9 @@ const router = createBrowserRouter([
       },
       {
         element: <ProtectedRoute />,
-        children: [{ path: 'settings', element: <UserSettings /> }]
+        children: [{ path: 'user/settings', element: <UserSettings /> }]
       },
+      { path: 'user/sepetim', element: <UserBasket /> },
       {
         path: 'sikca-sorulan-sorular',
         element: <Faq />
@@ -75,7 +77,7 @@ const router = createBrowserRouter([
         element: <OurStory />
       },
       {
-        path: 'user/settings',
+        path: 'admin/settings',
         element: <Settings />
       },
       { path: '/urun/:detailedId', element: <DetailedCard /> },

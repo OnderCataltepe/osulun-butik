@@ -26,34 +26,31 @@ import { doc, updateDoc, db } from '../../../firebase/config';
 import type { BasketType } from '../../../types/types';
 
 const UserBasket = () => {
+  const theme = useTheme();
+  const isMobil = useMediaQuery(theme.breakpoints.down('md'));
   const basket = useAppSelector((state) => state.user.values.basket);
   const user = useAppSelector((state) => state.user);
   const products = useAppSelector((state) => state.product.values);
   const dispatch = useAppDispatch();
-  const theme = useTheme();
-  const isMobil = useMediaQuery(theme.breakpoints.down('md'));
 
   const updateAmount = async (item: BasketType, type: string) => {
-    /* Maximum number of orders that can be request is available in the properties of the product. When user increase the number of order we must set a limit. maxAmount is the limit  */
-    const maxAmount = products.find((element) => element.id === item.id)?.amount;
-    let newAmount = 0;
-    if (type === 'increase' && maxAmount) {
-      newAmount = maxAmount > item.amount ? 1 : 0;
-    }
-    if (type === 'decrease') {
-      newAmount = -1;
-    }
-    if (user.isAuth) {
-      const docRef = doc(db, 'users', user.values.uid);
-
-      const newBasket = updateBasket(user.values.basket, {
+    const newBasket = updateBasket(
+      user.values.basket,
+      {
         price: item.price,
         id: item.id,
-        amount: newAmount,
+        amount: type === 'increase' ? 1 : -1,
         name: item.name,
         image: item.image
-      }).filter((item) => item.amount > 0);
+      },
+      products
+    );
+    if (user.isAuth) {
+      const docRef = doc(db, 'users', user.values.uid);
       await updateDoc(docRef, { basket: newBasket });
+      dispatch(userBasket(newBasket));
+    } else {
+      localStorage.setItem('basket', JSON.stringify(newBasket));
       dispatch(userBasket(newBasket));
     }
   };

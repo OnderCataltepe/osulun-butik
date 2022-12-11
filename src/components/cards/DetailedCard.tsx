@@ -1,6 +1,5 @@
 import { useAppDispatch, useAppSelector } from '../../redux/hooks/reduxHooks';
-import { getProducts, deleteProduct } from '../../redux/reducers/productSlice';
-import ProductCard from './ProductCard';
+
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Container from '@mui/material/Container';
@@ -20,21 +19,24 @@ import { useEffect, useState } from 'react';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useParams } from 'react-router-dom';
+import { userBasket } from '../../redux/reducers/userSlice';
 import type { ProductType } from '../../types/types';
 import Carousel from 'react-material-ui-carousel';
 import MultiCarousel from './MultiCarousel';
+import { doc, updateDoc, db } from '../../firebase/config';
+import { updateBasket } from '../../utils';
+
 const DetailedCard = (): JSX.Element => {
   const theme = useTheme();
   const { detailedId } = useParams();
+  const user = useAppSelector((state) => state.user);
+  const products = useAppSelector((state) => state.product.values);
+  const dispatch = useAppDispatch();
   const values = useAppSelector((state) => state.product.values);
   const [similarProducts, setSimilarProducts] = useState<ProductType[]>([]);
   const [detailedProduct, setDetailedProduct] = useState<ProductType>();
   const isMobil = useMediaQuery(theme.breakpoints.down('md'));
   const [count, setCount] = useState(1);
-  const dispatch = useAppDispatch();
-  useEffect(() => {
-    dispatch(getProducts());
-  }, []);
 
   useEffect(() => {
     const newPro = values.filter((item) => item.id === detailedId);
@@ -45,7 +47,29 @@ const DetailedCard = (): JSX.Element => {
     setSimilarProducts(similar);
     setDetailedProduct(newPro[0]);
   }, [values, detailedId]);
-
+  const addProduct = async () => {
+    if (detailedProduct) {
+      const newBasket = updateBasket(
+        user.values.basket,
+        {
+          price: detailedProduct.price,
+          id: detailedProduct.id,
+          amount: count,
+          name: detailedProduct.name,
+          image: detailedProduct.images[0]
+        },
+        products
+      );
+      if (user.isAuth) {
+        const docRef = doc(db, 'users', user.values.uid);
+        await updateDoc(docRef, { basket: newBasket });
+        dispatch(userBasket(newBasket));
+      } else {
+        localStorage.setItem('basket', JSON.stringify(newBasket));
+        dispatch(userBasket(newBasket));
+      }
+    }
+  };
   return (
     <Container
       fixed
@@ -170,7 +194,7 @@ const DetailedCard = (): JSX.Element => {
                   sx={{ p: 0 }}
                   aria-label="increase"
                   onClick={() => {
-                    setCount(Math.min(count + 1, values[0].amount));
+                    setCount(Math.min(count + 1, detailedProduct.amount));
                   }}>
                   <AddIcon fontSize="small" />
                 </Button>
@@ -181,6 +205,7 @@ const DetailedCard = (): JSX.Element => {
                 sx={{ '&:hover': { backgroundColor: 'black', color: 'white' } }}
                 color="primary"
                 disabled={detailedProduct.amount === 0 ? true : false}
+                onClick={addProduct}
                 endIcon={<ShoppingCartIcon />}>
                 Sepete Ekle
               </Button>

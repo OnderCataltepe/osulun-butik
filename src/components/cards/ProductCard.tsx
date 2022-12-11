@@ -1,25 +1,58 @@
+// Carousel component
 import Carousel from 'react-material-ui-carousel';
+// MUI
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
+import Link from '@mui/material/Link';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
-import Link from '@mui/material/Link';
+// Hooks
+import { useAppSelector, useAppDispatch } from '../../redux/hooks/reduxHooks';
 import { useNavigate } from 'react-router-dom';
-import { useTheme } from '@mui/material/styles';
-import { useParams } from 'react-router-dom';
-import useMediaQuery from '@mui/material/useMediaQuery';
-
+// data and helpers
+import { userBasket } from '../../redux/reducers/userSlice';
+import { updateBasket } from '../../utils';
+// Firebase
+import { doc, updateDoc, db } from '../../firebase/config';
+// Types
 import type { ProductType } from '../../types/types';
+
 const ProductCard = (product: ProductType): JSX.Element => {
-  const { detailedId, multiId } = useParams();
   const theme = useTheme();
   const isMobil = useMediaQuery(theme.breakpoints.down('md'));
+  const user = useAppSelector((state) => state.user);
+  const products = useAppSelector((state) => state.product.values);
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
+  const addProduct = async () => {
+    const newBasket = updateBasket(
+      user.values.basket,
+      {
+        price: product.price,
+        id: product.id,
+        amount: 1,
+        name: product.name,
+        image: product.images[0]
+      },
+      products
+    );
+    if (user.isAuth) {
+      const docRef = doc(db, 'users', user.values.uid);
+      await updateDoc(docRef, { basket: newBasket });
+      dispatch(userBasket(newBasket));
+    } else {
+      localStorage.setItem('basket', JSON.stringify(newBasket));
+      dispatch(userBasket(newBasket));
+    }
+  };
 
   return (
     <Card
@@ -84,7 +117,8 @@ const ProductCard = (product: ProductType): JSX.Element => {
           color="primary"
           sx={{ '&:hover': { backgroundColor: 'black', color: 'white' } }}
           disabled={product.amount === 0 ? true : false}
-          endIcon={<ShoppingCartIcon />}>
+          endIcon={<ShoppingCartIcon />}
+          onClick={addProduct}>
           Sepete Ekle
         </Button>
       </CardActions>

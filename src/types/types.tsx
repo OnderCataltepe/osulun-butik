@@ -25,3 +25,11 @@ export interface ProductType {
   images: string[];
   id: string;
 }
+
+export interface BasketType {
+  name: string;
+  id: string;
+  amount: number;
+  price: number;
+  image: string;
+}

@@ -1,11 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+export interface BasketType {
+  amount: number;
+  id: string;
+  price: number;
+  name: string;
+  image: string;
+}
 export interface UserType {
   uid: string;
   name: string;
   surname: string;
   email: string;
-  basket: { amount: number; id: string }[];
+  basket: BasketType[];
 }
 
 interface StateType {
@@ -13,12 +20,14 @@ interface StateType {
   isAuth: boolean;
 }
 
+const basketStorage = localStorage.getItem('basket');
+const array = basketStorage && (JSON.parse(basketStorage) as BasketType[]);
 const values: UserType = {
   uid: '',
   name: '',
   surname: '',
   email: '',
-  basket: [{ amount: 0, id: '' }]
+  basket: array || []
 };
 const initialState = {
   isAuth: localStorage.getItem('isAuthenticated') || false,
@@ -36,10 +45,13 @@ export const userSlice = createSlice({
     logout: (state) => {
       state.values = initialState.values;
       state.isAuth = false;
+    },
+    userBasket: (state, action) => {
+      state.values.basket = action.payload;
     }
   }
 });
 
-export const { login, logout } = userSlice.actions;
+export const { login, logout, userBasket } = userSlice.actions;
 
 export default userSlice.reducer;

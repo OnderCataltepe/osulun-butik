@@ -72,8 +72,9 @@ const baseTheme = createTheme({
     h4: {
       fontSize: 28,
       fontFamily: 'Playfair Display, serif',
-      letterSpacing: 1,
+      letterSpacing: 2,
       fontWeight: 'bold',
+      color: '#404040',
       [`@media screen and (max-width: ${breakpoints.values.md}px)`]: {
         fontSize: 20
       }
@@ -92,7 +93,7 @@ const baseTheme = createTheme({
       fontFamily: 'Playfair Display, serif',
       letterSpacing: 1,
       [`@media screen and (max-width: ${breakpoints.values.md}px)`]: {
-        fontSize: 12
+        fontSize: 14
       }
     },
     body2: {
@@ -104,6 +105,10 @@ const baseTheme = createTheme({
     },
     subText: {
       fontSize: 10,
+      color: 'black'
+    },
+    miniText: {
+      fontSize: 8,
       color: 'black'
     }
   },

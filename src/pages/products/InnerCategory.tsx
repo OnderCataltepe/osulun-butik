@@ -8,8 +8,7 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 // Hooks
-import { useAppSelector, useAppDispatch } from '../../redux/hooks/reduxHooks';
-import { getProducts } from '../../redux/reducers/productSlice';
+import { useAppSelector } from '../../redux/hooks/reduxHooks';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { navData } from '../../navigateData';
@@ -18,18 +17,12 @@ import type { ProductType } from '../../types/types';
 
 const InnerCategory = (): JSX.Element => {
   const [products, setProducts] = useState<ProductType[]>([]);
-
   const theme = useTheme();
   const { innerId } = useParams();
-  const dispatch = useAppDispatch();
 
   const pages = navData.find((item) => item.subTitles.find((product) => product.path === innerId));
   const innerPage = pages?.subTitles.find((item) => item.path === innerId);
   const values = useAppSelector((state) => state.product.values);
-
-  useEffect(() => {
-    dispatch(getProducts());
-  }, []);
 
   useEffect(() => {
     const filteredProducts = values.filter((item) =>

@@ -1,6 +1,6 @@
-import DrawerComp from './Drawer';
+import DrawerComp from './toolbars/Drawer';
 import NavHeader from './NavHeader';
-import LargeToolbar from './LargeToolbar';
+import LargeToolbar from './toolbars/LargeToolbar';
 // MUI
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';

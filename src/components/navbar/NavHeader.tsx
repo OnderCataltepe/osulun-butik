@@ -1,9 +1,8 @@
-import NavIcons from './NavIcons';
+import NavIcons from './navIcons/NavIcons';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import LocalPhoneOutlinedIcon from '@mui/icons-material/LocalPhoneOutlined';
 import useMediaQuery from '@mui/material/useMediaQuery';
-
 import { useTheme } from '@mui/material/styles';
 
 const NavHeader = (): JSX.Element => {
