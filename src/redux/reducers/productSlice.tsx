@@ -14,6 +14,7 @@ const initialState = {
 } as ProductState;
 
 export const getProducts = createAsyncThunk('product/get', async () => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const datas: any[] = [];
 
   const ref = collection(db, 'products');
