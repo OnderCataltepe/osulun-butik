@@ -1,29 +1,21 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
 import { db } from '../../firebase/config';
 import { collection, getDocs, deleteDoc, doc } from 'firebase/firestore';
-
-export interface ProductData {
-  id: string;
-  name: string;
-  description: string;
-  category: string[];
-  price: number;
-  amount: number;
-  images: string[];
-}
+import type { ProductType } from '../../types/types';
 
 interface ProductState {
-  values: ProductData[];
-  loading: 'idle' | 'pending' | 'fulfilled' | 'rejected';
+  values: ProductType[];
+  loading: boolean;
 }
 
 const initialState = {
   values: [],
-  loading: 'idle'
+  loading: false
 } as ProductState;
 
 export const getProducts = createAsyncThunk('product/get', async () => {
   const datas: any[] = [];
+
   const ref = collection(db, 'products');
   await getDocs(ref).then((snap) => {
     snap.forEach((doc) =>
@@ -35,20 +27,6 @@ export const getProducts = createAsyncThunk('product/get', async () => {
   });
   return datas;
 });
-
-export const getElements = async () => {
-  const datas: any[] = [];
-  const ref = collection(db, 'products');
-  await getDocs(ref).then((snap) => {
-    snap.forEach((doc) =>
-      datas.push({
-        id: doc.id,
-        ...doc.data()
-      })
-    );
-  });
-  return datas;
-};
 
 export const deleteProduct = createAsyncThunk('product/delete', async (id: string) => {
   const ref = doc(db, 'products', id);
@@ -60,17 +38,26 @@ export const productSlice = createSlice({
   name: 'product',
   initialState,
   reducers: {
-    setProduct: (state, action: PayloadAction<ProductData[]>) => {
+    setProduct: (state, action: PayloadAction<ProductType[]>) => {
       state.values = action.payload;
+      state.loading = false;
     }
   },
   extraReducers: (builder) => {
     builder.addCase(getProducts.fulfilled, (state, action) => {
       state.values = action.payload;
+      state.loading = false;
+    });
+    builder.addCase(getProducts.pending, (state, action) => {
+      state.loading = true;
+    });
+    builder.addCase(getProducts.rejected, (state, action) => {
+      state.loading = false;
     });
     builder.addCase(deleteProduct.fulfilled, (state, action) => {
       const newSet = state.values.filter((item) => item.id !== action.payload);
       state.values = newSet;
+      state.loading = false;
     });
   }
 });

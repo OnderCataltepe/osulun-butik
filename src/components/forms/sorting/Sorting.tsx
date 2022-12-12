@@ -3,12 +3,12 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import React, { useState, useEffect } from 'react';
-import { ProductData } from '../../../redux/reducers/productSlice';
+import { useState, useEffect } from 'react';
+import type { ProductType } from '../../../types/types';
 
 interface SProps {
-  products: ProductData[];
-  setProducts: (value: ProductData[]) => void;
+  products: ProductType[];
+  setProducts: (value: ProductType[]) => void;
 }
 const Sorting = ({ products, setProducts }: SProps): JSX.Element => {
   const [sorted, setSorted] = useState<string>('new');

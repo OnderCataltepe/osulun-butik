@@ -1,7 +1,6 @@
-import { ProductData } from '../redux/reducers/productSlice';
-import { useAppSelector } from '../redux/hooks/reduxHooks';
-import type { BasketType } from '../types/types';
-export const sortProduct = (data: ProductData[], sorting: string) => {
+import type { ProductType, BasketType } from '../types/types';
+
+export const sortProduct = (data: ProductType[], sorting: string) => {
   switch (sorting) {
     case 'new':
       return data;
@@ -16,9 +15,9 @@ export const sortProduct = (data: ProductData[], sorting: string) => {
   }
 };
 
-// update products which are in basket
+/* When the user adds a product to the basket or changes the amount of the product, this function updates the product according to the maximum number of products */
 
-export const updateBasket = (arr: BasketType[], item: BasketType, products: ProductData[]) => {
+export const updateBasket = (arr: BasketType[], item: BasketType, products: ProductType[]) => {
   const maxAmount = products.find((element) => element.id === item.id)?.amount;
 
   const newArray = [...arr];
@@ -35,16 +34,3 @@ export const updateBasket = (arr: BasketType[], item: BasketType, products: Prod
   }
   return newArray.filter((item) => item.amount > 0);
 };
-
-/**
- export const updateBasket = (arr: BasketType[], item: BasketType) => {
-  const newArray = [...arr];
-  const index = arr.findIndex((element) => element.id === item.id);
-  if (index > -1) {
-    newArray[index] = { ...item, amount: item.amount + newArray[index].amount };
-  } else {
-    newArray.push(item);
-  }
-  return newArray.filter((item) => item.amount > 0);
-};
- */

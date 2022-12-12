@@ -1,11 +1,11 @@
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import ProductCard from './ProductCard';
-import type { ProductType } from '../../types/types';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import { useRef } from 'react';
+import type { ProductType } from '../../types/types';
 
 interface MProps {
   contents: ProductType[];

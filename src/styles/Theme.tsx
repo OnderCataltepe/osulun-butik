@@ -1,14 +1,6 @@
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import '../index.css';
 
-/**
- * 
- font-family: 'Lato', sans-serif;
-font-family: 'Merriweather', serif;
-font-family: 'Playfair Display', serif;
-font-family: 'Roboto Mono', monospace;
- */
-
 const breakpoints = {
   values: {
     xs: 0,
@@ -80,7 +72,7 @@ const baseTheme = createTheme({
       }
     },
     h5: {
-      fontSize: 24,
+      fontSize: 20,
       fontFamily: 'Lato, sans-serif',
       letterSpacing: 1,
 
@@ -97,10 +89,10 @@ const baseTheme = createTheme({
       }
     },
     body2: {
-      fontSize: 12,
-      fontFamily: 'Roboto Mono, monospace',
+      fontSize: 14,
+      fontFamily: 'Lato, sans-serif',
       [`@media screen and (max-width: ${breakpoints.values.md}px)`]: {
-        fontSize: 10
+        fontSize: 12
       }
     },
     subText: {

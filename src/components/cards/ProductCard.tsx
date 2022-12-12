@@ -93,7 +93,6 @@ const ProductCard = (product: ProductType): JSX.Element => {
           sx={{
             display: 'flex',
             alignItems: 'center',
-            flexDirection: isMobil ? 'column' : 'row',
             justifyContent: 'space-between'
           }}>
           <Typography variant="body2">{product.price.toLocaleString()} TL</Typography>

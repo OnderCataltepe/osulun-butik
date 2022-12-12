@@ -3,7 +3,9 @@ import * as yup from 'yup';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import { auth, signInWithEmailAndPassword } from '../../../firebase/config';
-
+import { useState } from 'react';
+import Loading from '../../../pages/loading/Loading';
+import InfoModal from '../../modals/InfoModal';
 const validationSchema = yup.object({
   email: yup
     .string()
@@ -15,13 +17,23 @@ const validationSchema = yup.object({
     .required('Lütfen şifrenizi giriniz.')
 });
 
-const Login = () => {
+interface LProps {
+  closeModal: () => void;
+}
+
+const Login = ({ closeModal }: LProps): JSX.Element => {
+  const [loading, setLoading] = useState<boolean>(false);
+  const [openError, setOpenError] = useState<boolean>(false);
   const userLogin = async (email: string, password: string) => {
+    setLoading(true);
+    setOpenError(false);
     try {
       const user = await signInWithEmailAndPassword(auth, email, password);
-      console.log(user);
+      closeModal();
     } catch (err) {
-      console.error(err);
+      setOpenError(true);
+    } finally {
+      setLoading(false);
     }
   };
   const formik = useFormik({
@@ -31,7 +43,6 @@ const Login = () => {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
       userLogin(values.email, values.password);
       formik.resetForm();
     }
@@ -42,7 +53,7 @@ const Login = () => {
       <form onSubmit={formik.handleSubmit} style={{ textAlign: 'center' }}>
         <TextField
           fullWidth
-          id="email"
+          id="email-in"
           name="email"
           label="E-mail"
           value={formik.values.email}
@@ -79,6 +90,8 @@ const Login = () => {
           Şifremi Unuttum`
         </a>
       </form>
+      {loading && <Loading />}
+      {<InfoModal open={openError} color="red" text="Hatalı Şifre" closeModal={closeModal} />}
     </div>
   );
 };

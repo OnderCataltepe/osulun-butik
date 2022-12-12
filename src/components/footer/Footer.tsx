@@ -13,7 +13,7 @@ import { Link } from 'react-router-dom';
 import { SxProps } from '@mui/material/styles';
 import logoFooter from '../../assets/logoFooter.jpg';
 
-const Footer = () => {
+const Footer = (): JSX.Element => {
   const theme = useTheme();
   const boxStyle: SxProps = {
     display: 'flex',
@@ -21,7 +21,9 @@ const Footer = () => {
 
     '& >a': {
       marginBottom: '4px',
+      fontSize: 14,
       textDecoration: 'none',
+      fontFamily: 'Lato, sans-serif',
       color: 'white',
       '&:hover': {
         color: theme.palette.common.orange
@@ -33,7 +35,8 @@ const Footer = () => {
     flexDirection: 'column',
     alignItems: 'center',
     boxShadow: 'none',
-    backgroundColor: 'inherit'
+    backgroundColor: 'inherit',
+    pt: 2
   };
   return (
     <footer
@@ -79,11 +82,12 @@ const Footer = () => {
             <Typography variant="h6" sx={{ color: theme.palette.common.gray2 }} gutterBottom>
               Sosyal Medya
             </Typography>
-            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+            <Box sx={{ display: 'flex', justifyContent: 'space-evenly', '&>a': { mr: 1 } }}>
               <MuiLink target="_blank" href="https://www.instagram.com" rel="noreferrer">
                 <InstagramIcon
                   sx={{
                     borderRadius: '5px',
+
                     color: 'white',
                     background:
                       'radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%)'

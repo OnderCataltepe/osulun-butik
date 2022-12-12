@@ -9,7 +9,7 @@ import PageLayout from '../../layouts/PageLayout';
 import { partners } from './constants';
 import partnersBg from '../../assets/backgrounds/partnersBg.jpg';
 
-const Partnerships = () => {
+const Partnerships = (): JSX.Element => {
   const theme = useTheme();
   const isMobil = useMediaQuery(theme.breakpoints.down('md'));
 

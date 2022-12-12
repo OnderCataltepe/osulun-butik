@@ -14,6 +14,7 @@ import { useParams } from 'react-router-dom';
 import { navData } from '../../navigateData';
 // Types
 import type { ProductType } from '../../types/types';
+import ErrorPage from '../error/ErrorPage';
 
 const InnerCategory = (): JSX.Element => {
   const [products, setProducts] = useState<ProductType[]>([]);
@@ -30,7 +31,9 @@ const InnerCategory = (): JSX.Element => {
     );
     setProducts(filteredProducts);
   }, [values, innerPage?.path]);
-
+  if (!innerPage) {
+    return <ErrorPage />;
+  }
   return (
     <Container fixed>
       <Box

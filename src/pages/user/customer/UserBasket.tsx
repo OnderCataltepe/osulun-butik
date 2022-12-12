@@ -25,7 +25,7 @@ import { doc, updateDoc, db } from '../../../firebase/config';
 // Types
 import type { BasketType } from '../../../types/types';
 
-const UserBasket = () => {
+const UserBasket = () :JSX.Element => {
   const theme = useTheme();
   const isMobil = useMediaQuery(theme.breakpoints.down('md'));
   const basket = useAppSelector((state) => state.user.values.basket);

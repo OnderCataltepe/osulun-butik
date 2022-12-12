@@ -20,7 +20,7 @@ const validationSchema = yup.object({
   acceptTerms: yup.bool().oneOf([true], 'Üyelik sözleşmesini kabul etmelisiniz')
 });
 
-const Subscribe = () => {
+const Subscribe = (): JSX.Element => {
   const theme = useTheme();
   const isMobil = useMediaQuery(theme.breakpoints.down('md'));
   const formik = useFormik({
@@ -38,7 +38,7 @@ const Subscribe = () => {
   return (
     <div style={{ textAlign: 'center', width: isMobil ? '90%' : '60%' }}>
       <Typography variant="h5">Haftalık Bülten</Typography>
-      <Typography variant="body1">
+      <Typography variant="body1" sx={{ mb: 2 }}>
         Şimdi abone olun ve koleksiyonlardan doğrudan haber alın.
       </Typography>
       <form onSubmit={formik.handleSubmit} style={{ textAlign: 'center' }}>
@@ -56,7 +56,9 @@ const Subscribe = () => {
           margin="dense"
         />
 
-        <FormControl error={formik.touched.acceptTerms && Boolean(formik.errors.acceptTerms)}>
+        <FormControl
+          sx={{ my: 3 }}
+          error={formik.touched.acceptTerms && Boolean(formik.errors.acceptTerms)}>
           <FormControlLabel
             style={{ pointerEvents: 'none' }}
             label={

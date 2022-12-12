@@ -1,5 +1,6 @@
-import { useAppDispatch, useAppSelector } from '../../redux/hooks/reduxHooks';
-
+// MUI
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Container from '@mui/material/Container';
@@ -15,16 +16,19 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Typography from '@mui/material/Typography';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
+// Hooks and helpers
+import { useAppDispatch, useAppSelector } from '../../redux/hooks/reduxHooks';
 import { useEffect, useState } from 'react';
-import { useTheme } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import { useParams } from 'react-router-dom';
 import { userBasket } from '../../redux/reducers/userSlice';
-import type { ProductType } from '../../types/types';
-import Carousel from 'react-material-ui-carousel';
-import MultiCarousel from './MultiCarousel';
-import { doc, updateDoc, db } from '../../firebase/config';
 import { updateBasket } from '../../utils';
+// Firebase
+import { doc, updateDoc, db } from '../../firebase/config';
+// Components
+import MultiCarousel from './MultiCarousel';
+import Carousel from 'react-material-ui-carousel';
+// Types
+import type { ProductType } from '../../types/types';
 
 const DetailedCard = (): JSX.Element => {
   const theme = useTheme();

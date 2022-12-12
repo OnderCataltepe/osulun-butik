@@ -1,24 +1,26 @@
-import { useAppSelector, useAppDispatch } from '../../../redux/hooks/reduxHooks';
-
+// Hooks
+import { useAppSelector } from '../../../redux/hooks/reduxHooks';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+// MUI
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
-import { db, auth, deleteUser, doc, deleteDoc } from '../../../firebase/config';
 import DialogTitle from '@mui/material/DialogTitle';
+// Firebase
+import { db, auth, deleteUser, doc, deleteDoc } from '../../../firebase/config';
 
-import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
-const UserSettings = () => {
+const UserSettings = (): JSX.Element => {
   const values = useAppSelector((state) => state.user.values);
   const [open, setOpen] = useState<boolean>(false);
   const navigate = useNavigate();
-  const handleClickOpen = () => {
+  const handleClickOpen = (): void => {
     setOpen(true);
   };
 
-  const handleClose = () => {
+  const handleClose = (): void => {
     setOpen(false);
   };
 
@@ -27,12 +29,11 @@ const UserSettings = () => {
       deleteUser(auth.currentUser)
         .then(() => {
           deleteDoc(doc(db, 'users', values.uid));
-          console.log('kullanıcı silindi');
           navigate('/');
           setOpen(false);
         })
         .catch((error) => {
-          console.log('hele');
+          alert(error);
         });
     }
   };

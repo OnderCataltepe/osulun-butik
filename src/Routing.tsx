@@ -10,20 +10,28 @@ import SalesPoints from './pages/corporate/SalesPoints';
 import Contacts from './pages/corporate/Contacts';
 import UserBasket from './pages/user/customer/UserBasket';
 import Press from './pages/corporate/Press';
+import ErrorPage from './pages/error/ErrorPage';
 import OurStory from './pages/corporate/OurStory';
 import Settings from './pages/user/admin/Settings';
 import InnerCategory from './pages/products/InnerCategory';
 import UserSettings from './pages/user/customer/UserSettings';
 import DetailedCard from './components/cards/DetailedCard';
 import { useAppSelector } from './redux/hooks/reduxHooks';
-import { useEffect } from 'react';
+import QueryProducts from './pages/products/QueryProducts';
+
 const ProtectedRoute = () => {
   const user = useAppSelector((state) => state.user);
-  useEffect(() => {
-    console.log(user);
-  }, []);
 
   if (!user.isAuth) {
+    return <Navigate to="/" replace />;
+  }
+
+  return <Outlet />;
+};
+const AdminRoute = () => {
+  const user = useAppSelector((state) => state.user);
+
+  if (!user.isAuth || user.values.role !== 'admin') {
     return <Navigate to="/" replace />;
   }
 
@@ -34,6 +42,7 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <Layout />,
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,
@@ -42,6 +51,10 @@ const router = createBrowserRouter([
       {
         element: <ProtectedRoute />,
         children: [{ path: 'user/settings', element: <UserSettings /> }]
+      },
+      {
+        element: <AdminRoute />,
+        children: [{ path: 'admin/settings', element: <Settings /> }]
       },
       { path: 'user/sepetim', element: <UserBasket /> },
       {
@@ -79,6 +92,10 @@ const router = createBrowserRouter([
       {
         path: 'admin/settings',
         element: <Settings />
+      },
+      {
+        path: 'search/:searchId',
+        element: <QueryProducts />
       },
       { path: '/urun/:detailedId', element: <DetailedCard /> },
       {

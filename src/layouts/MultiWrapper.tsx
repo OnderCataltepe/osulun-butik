@@ -49,9 +49,11 @@ const MultiWrapper = ({ products }: MProps): JSX.Element => {
           borderColor: theme.palette.common.gray2,
           p: 3,
           '& >ul': {
-            listStyle: 'none'
+            listStyle: 'none',
+            fontFamily: 'Lato, sans-serif'
           },
           '& >ul> li': {
+            fontSize: 16,
             mx: 1.5,
             my: 0.5
           },

@@ -13,7 +13,7 @@ import istanbul3 from '../../assets/ourStory/istanbul3.jpg';
 import Animate from '../../components/animations/ScrollAnimations';
 import PageLayout from '../../layouts/PageLayout';
 
-const OurStory = () => {
+const OurStory = (): JSX.Element => {
   const theme = useTheme();
   const isMobil = useMediaQuery(theme.breakpoints.down('md'));
 
@@ -80,7 +80,9 @@ const OurStory = () => {
             </Box>
           </Animate.FadeLeft>
           <Animate.FadeRight>
-            <Typography variant="body1" sx={{ color: 'block', fontWeight: 'bold' }}>
+            <Typography
+              variant="body1"
+              sx={{ color: 'block', fontWeight: 'bold', textAlign: 'center' }}>
               Mübadeleye tabi tutulmayan İstanbul’un Rum nüfusu zamana yayılarak azalırken kimi iş
               kollarında büyük boşluklar oluşmuştu. Kendisinden çok şey öğrendiği Kumkapılı Rum
               Aleko’nun şehri terk etmesi ile birlikte Sülün’ün çıraklık dönemi kapanmıştı.
@@ -113,7 +115,9 @@ const OurStory = () => {
             </Box>
           </Animate.FadeRight>
           <Animate.FadeLeft>
-            <Typography variant="body1" sx={{ color: 'block', fontWeight: 'bold' }}>
+            <Typography
+              variant="body1"
+              sx={{ color: 'block', fontWeight: 'bold', textAlign: 'center' }}>
               Başarılı, paradigmaları altüst eden her insana yapıldığı gibi Sülün’ün de önüne
               engeller koyuldu. Aralıklarla hapis yattı, iftiralar uğradı ama yılmadı. Büyük bir
               marka yaratmak kolay değildi ve o, bu engelleri büyüklüğünün nişaneleri olarak gördü.

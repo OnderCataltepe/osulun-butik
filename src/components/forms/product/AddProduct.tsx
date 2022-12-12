@@ -58,7 +58,7 @@ const categories = [
 ];
 
 const AddProduct = (): JSX.Element => {
-  const [progresspercent, setProgresspercent] = useState(0);
+  const [progresspercent, setProgresspercent] = useState<number>(0);
 
   const formik = useFormik({
     initialValues: {

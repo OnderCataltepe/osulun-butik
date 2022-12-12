@@ -19,22 +19,22 @@ interface AcPropTypes {
   color: string;
 }
 
-const Account = ({ color }: AcPropTypes) => {
+const Account = ({ color }: AcPropTypes): JSX.Element => {
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const isAuth = useAppSelector((state) => state.user.isAuth);
+  const { isAuth, values } = useAppSelector((state) => state.user);
   const [openForm, setOpenForm] = useState<boolean>(false);
   const open = Boolean(anchorEl);
 
-  const openFormModal = () => setOpenForm(true);
+  const openFormModal = (): void => setOpenForm(true);
 
-  const closeFormModal = () => setOpenForm(false);
+  const closeFormModal = (): void => setOpenForm(false);
 
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+  const handleClick = (event: React.MouseEvent<HTMLElement>): void => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = () => {
+  const handleClose = (): void => {
     setAnchorEl(null);
   };
 
@@ -82,7 +82,7 @@ const Account = ({ color }: AcPropTypes) => {
         }}
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}>
-        <MenuItem onClick={() => navigate('/user/settings')}>
+        <MenuItem onClick={() => navigate(`/${values.role}/settings`)}>
           <ListItemIcon>
             <Settings fontSize="small" />
           </ListItemIcon>

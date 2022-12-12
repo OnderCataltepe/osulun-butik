@@ -6,9 +6,10 @@ import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import { auth, setDoc, createUserWithEmailAndPassword, doc, db } from '../../../firebase/config';
-
+import { useState } from 'react';
 import FormHelperText from '@mui/material/FormHelperText';
-
+import Loading from '../../../pages/loading/Loading';
+import InfoModal from '../../modals/InfoModal';
 const validationSchema = yup.object({
   name: yup.string().required('Lütfen adınızı yazınız.'),
   surname: yup.string().required('Lütfen soyadınızı yazınız'),
@@ -26,22 +27,35 @@ const validationSchema = yup.object({
     .required('Lütfen şifrenizi tekrar giriniz.'),
   acceptTerms: yup.bool().oneOf([true], 'Üyelik sözleşmesini kabul etmelisiniz')
 });
-const SignUp = () => {
+
+interface SProps {
+  closeModal: () => void;
+}
+const SignUp = ({ closeModal }: SProps): JSX.Element => {
+  const [loading, setLoading] = useState<boolean>(false);
+  const [openInfo, setOpenInfo] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
   const userSignUp = async (name: string, surname: string, email: string, password: string) => {
+    setLoading(true);
+    setError(false);
     try {
       const res = await createUserWithEmailAndPassword(auth, email, password);
       const user = res.user;
-
       await setDoc(doc(db, 'users', user.uid), {
         uid: user.uid,
         surname,
         name,
+        role: 'user',
         authProvider: 'local',
         email,
-        basket: [{ amount: 0, id: '' }]
+        basket: []
       });
+      setOpenInfo(true);
     } catch (err) {
-      console.error(err);
+      setError(true);
+      setOpenInfo(true);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -56,7 +70,6 @@ const SignUp = () => {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
       userSignUp(values.name, values.surname, values.email, values.password);
       formik.resetForm();
     }
@@ -67,7 +80,7 @@ const SignUp = () => {
       <form onSubmit={formik.handleSubmit} style={{ textAlign: 'center' }}>
         <TextField
           fullWidth
-          id="name"
+          id="name-up"
           name="name"
           label="Adınız"
           value={formik.values.name}
@@ -93,7 +106,7 @@ const SignUp = () => {
         />
         <TextField
           fullWidth
-          id="email"
+          id="email-up"
           name="email"
           label="E-mail"
           value={formik.values.email}
@@ -168,6 +181,17 @@ const SignUp = () => {
           Üye Ol
         </Button>
       </form>
+      {loading && <Loading />}
+      {
+        <InfoModal
+          open={openInfo}
+          color={error ? 'red' : 'green'}
+          text={
+            error ? 'Bu email adresine kayıtlı kullanıcı bulunmaktadır' : 'Kayıt işlemi başarılı.'
+          }
+          closeModal={closeModal}
+        />
+      }
     </div>
   );
 };

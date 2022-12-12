@@ -1,6 +1,7 @@
 // Components
 import Navbar from '../components/navbar/Navbar';
 import Footer from '../components/footer/Footer';
+import Loading from '../pages/loading/Loading';
 // Firebase
 import { auth, db, getDoc, doc, onAuthStateChanged, updateDoc } from '../firebase/config';
 // React router
@@ -10,15 +11,17 @@ import { ScrollRestoration } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../redux/hooks/reduxHooks';
 import { login, logout, userBasket } from '../redux/reducers/userSlice';
 import { getProducts } from '../redux/reducers/productSlice';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { updateBasket } from '../utils';
 // Types
-import type { BasketType } from '../redux/reducers/userSlice';
+import type { BasketType } from '../types/types';
 
 const Layout = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const products = useAppSelector((state) => state.product.values);
+  const isLoading = useAppSelector((state) => state.product.loading);
   const user = useAppSelector((state) => state.user);
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     dispatch(getProducts());
@@ -28,20 +31,20 @@ const Layout = (): JSX.Element => {
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {
-          console.log('Document data:', { ...docSnap.data() });
           localStorage.setItem('isAuthenticated', 'true');
 
           dispatch(login({ ...docSnap.data() }));
-        } else {
-          console.log('No such document!');
         }
       } else {
         localStorage.setItem('isAuthenticated', 'false');
         dispatch(logout());
       }
     });
-    console.log('page loaded');
   }, []);
+
+  useEffect(() => {
+    setLoading(isLoading);
+  }, [isLoading]);
 
   useEffect(() => {
     if (user.isAuth) {
@@ -60,6 +63,7 @@ const Layout = (): JSX.Element => {
       }
     }
   }, [user.isAuth]);
+
   return (
     <div
       style={{
@@ -69,6 +73,7 @@ const Layout = (): JSX.Element => {
         flexDirection: 'column'
       }}>
       <Navbar />
+      {isLoading && <Loading />}
       <Outlet />
       <Footer />
       <ScrollRestoration />

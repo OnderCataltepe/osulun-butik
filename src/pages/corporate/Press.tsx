@@ -16,7 +16,7 @@ import sulun6 from '../../assets/press/sulun6.jpg';
 
 const itemData = [sulun1, sulun2, sulun3, sulun4, sulun5, sulun6];
 
-const Press = () => {
+const Press = (): JSX.Element => {
   const theme = useTheme();
   const isMobil = useMediaQuery(theme.breakpoints.down('md'));
 

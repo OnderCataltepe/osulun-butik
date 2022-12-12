@@ -1,19 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-
-export interface BasketType {
-  amount: number;
-  id: string;
-  price: number;
-  name: string;
-  image: string;
-}
-export interface UserType {
-  uid: string;
-  name: string;
-  surname: string;
-  email: string;
-  basket: BasketType[];
-}
+import type { BasketType, UserType } from '../../types/types';
 
 interface StateType {
   values: UserType;
@@ -25,6 +11,7 @@ const array = basketStorage && (JSON.parse(basketStorage) as BasketType[]);
 const values: UserType = {
   uid: '',
   name: '',
+  role: '',
   surname: '',
   email: '',
   basket: array || []

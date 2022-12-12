@@ -5,6 +5,7 @@ import MenuItem from '@mui/material/MenuItem';
 import IconButton from '@mui/material/IconButton';
 import BasketCard from '../../cards/BasketCard';
 import Button from '@mui/material/Button';
+import Badge from '@mui/material/Badge';
 // Hooks
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
@@ -14,17 +15,17 @@ interface BagPTypes {
   color: string;
 }
 
-const Bag = ({ color }: BagPTypes) => {
+const Bag = ({ color }: BagPTypes): JSX.Element => {
   const navigate = useNavigate();
   const basketValues = useAppSelector((state) => state.user.values.basket);
   const [anchorBasketEl, setAnchorBasketEl] = useState<null | HTMLElement>(null);
   const openBasket = Boolean(anchorBasketEl);
 
-  const basketClick = (event: React.MouseEvent<HTMLElement>) => {
+  const basketClick = (event: React.MouseEvent<HTMLElement>): void => {
     setAnchorBasketEl(event.currentTarget);
   };
 
-  const basketClose = () => {
+  const basketClose = (): void => {
     setAnchorBasketEl(null);
   };
   return (
@@ -35,7 +36,15 @@ const Bag = ({ color }: BagPTypes) => {
         aria-haspopup="true"
         aria-expanded={openBasket ? 'true' : undefined}
         onClick={basketClick}>
-        <ShoppingCartOutlinedIcon sx={{ color: color }} fontSize="small" />
+        <Badge
+          color="warning"
+          anchorOrigin={{
+            vertical: 'top',
+            horizontal: 'right'
+          }}
+          badgeContent={basketValues.length}>
+          <ShoppingCartOutlinedIcon sx={{ color: color }} fontSize="small" />
+        </Badge>
       </IconButton>
 
       <Menu
@@ -48,7 +57,8 @@ const Bag = ({ color }: BagPTypes) => {
           sx: {
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'center'
+            alignItems: 'center',
+            px: 2
           }
         }}
         PaperProps={{

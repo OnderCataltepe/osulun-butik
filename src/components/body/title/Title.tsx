@@ -9,7 +9,7 @@ interface TProps {
   title: string;
 }
 
-const Title = ({ image, color, title }: TProps) => {
+const Title = ({ image, color, title }: TProps): JSX.Element => {
   const theme = useTheme();
   const isMobil = useMediaQuery(theme.breakpoints.down('md'));
 

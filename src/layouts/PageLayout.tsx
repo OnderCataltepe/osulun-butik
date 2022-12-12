@@ -3,7 +3,6 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
-import Divider from '@mui/material/Divider';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import HttpsIcon from '@mui/icons-material/Https';
 import LanguageIcon from '@mui/icons-material/Language';
@@ -19,7 +18,7 @@ interface TProps {
   children: JSX.Element;
 }
 
-const PageLayout = ({ image, color, title, children }: TProps) => {
+const PageLayout = ({ image, color, title, children }: TProps): JSX.Element => {
   const theme = useTheme();
   const isMobil = useMediaQuery(theme.breakpoints.down('md'));
   // styles

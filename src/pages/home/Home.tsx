@@ -12,14 +12,14 @@ import Subscribe from '../../components/forms/subscribe/Subscribe';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
+import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 // Hooks and Router
-import { useAppSelector, useAppDispatch } from '../../redux/hooks/reduxHooks';
+import { useAppSelector } from '../../redux/hooks/reduxHooks';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { getProducts } from '../../redux/reducers/productSlice';
 // Types
 import type { ProductType } from '../../types/types';
 interface AdType {
@@ -58,15 +58,10 @@ const advertisement: AdType[] = [
 
 const Home = (): JSX.Element => {
   const [trends, setTrends] = useState<ProductType[]>([]);
-  const dispatch = useAppDispatch();
   const values = useAppSelector((state) => state.product.values);
   const navigate = useNavigate();
   const theme = useTheme();
   const isMobil = useMediaQuery(theme.breakpoints.down('md'));
-
-  useEffect(() => {
-    dispatch(getProducts());
-  }, []);
 
   useEffect(() => {
     if (values.length > 0) {
@@ -83,6 +78,7 @@ const Home = (): JSX.Element => {
           <Typography variant="h3" sx={{ mb: 2, color: theme.palette.common.gray1 }}>
             Hoşgeldiniz
           </Typography>
+
           <Typography variant="body1">
             Birikiminizin erimesinden endişe ediyorsanız, getirisi yüksek yatırım fırsatları
             peşindeyseniz doğru adrestesiniz. Minimum riskle maksimum kazanç sağlayacak bir
@@ -94,12 +90,47 @@ const Home = (): JSX.Element => {
 
           <Typography></Typography>
         </Box>
-        <Box sx={{ width: '100%', px: 2, my: 6, textAlign: 'center' }}>
-          <Typography variant="h3" sx={{ borderBottom: '1px solid gray', mb: 2, pb: 1 }}>
-            Trend Ürünler
-          </Typography>
+        <Box
+          sx={{
+            width: '100%',
+            px: 2,
+            my: 6,
+            textAlign: 'center',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center'
+          }}>
+          <Divider
+            textAlign="left"
+            sx={{
+              mb: 4,
+              px: 2,
+              width: '100%',
+              '&::before, &::after': {
+                borderColor: theme.palette.common.gray1
+              }
+            }}>
+            <Typography variant="h3" sx={{ color: theme.palette.common.gray1 }}>
+              Trend Ürünler
+            </Typography>
+          </Divider>
           {trends.length > 0 && <MultiCarousel contents={trends} />}
         </Box>
+
+        <Divider
+          textAlign="left"
+          sx={{
+            mt: 2,
+            px: 2,
+            width: '100%',
+            '&::before, &::after': {
+              borderColor: theme.palette.common.gray1
+            }
+          }}>
+          <Typography variant="h3" sx={{ color: theme.palette.common.gray1 }}>
+            Keşfet
+          </Typography>
+        </Divider>
         <Grid container sx={{ alignItems: 'strech', pb: 4, my: 2 }}>
           {advertisement.map((item) => (
             <Grid

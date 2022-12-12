@@ -10,20 +10,22 @@ import Modal from '@mui/material/Modal';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 // Hooks
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 // Types
 import { SxProps } from '@mui/material/styles';
 
 interface FProps {
   color: string;
 }
-const SearchModal = ({ color }: FProps) => {
+const SearchModal = ({ color }: FProps): JSX.Element => {
   const theme = useTheme();
   const isMobil = useMediaQuery(theme.breakpoints.down('md'));
+  const navigate = useNavigate();
   const [openSearch, setOpenSearch] = useState<boolean>(false);
-
-  const openSearchModal = () => setOpenSearch(true);
-  const closeSearchModal = () => setOpenSearch(false);
+  const [searchTerm, setSearchTerm] = useState<string>('');
+  const openSearchModal = (): void => setOpenSearch(true);
+  const closeSearchModal = (): void => setOpenSearch(false);
   const style: SxProps = {
     position: 'absolute',
     width: '100%',
@@ -32,6 +34,15 @@ const SearchModal = ({ color }: FProps) => {
     mt: 2,
     display: 'flex',
     justifyContent: 'center'
+  };
+
+  const searchHandle = () => {
+    if (searchTerm.trim()) {
+      navigate(`/search/${searchTerm.trim()}`);
+      closeSearchModal();
+    } else {
+      closeSearchModal();
+    }
   };
   return (
     <>
@@ -60,14 +71,26 @@ const SearchModal = ({ color }: FProps) => {
               }}>
               <InputBase
                 sx={{ flex: 1, px: 1 }}
-                placeholder="Search..."
+                placeholder="Ürün ismi yazın..."
+                value={searchTerm}
                 inputProps={{ 'aria-label': 'search input' }}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                onKeyPress={(e) => {
+                  if (e.key === 'Enter') {
+                    searchHandle();
+                    e.preventDefault();
+                  }
+                }}
               />
               <Divider
                 orientation="vertical"
                 sx={{ backgroundColor: theme.palette.common.gray2 }}
               />
-              <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
+              <IconButton
+                type="button"
+                sx={{ p: '10px' }}
+                aria-label="search"
+                onClick={searchHandle}>
                 <SearchIcon />
               </IconButton>
             </Paper>

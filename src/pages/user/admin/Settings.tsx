@@ -9,34 +9,21 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 // Firebase
-import { getProducts, deleteProduct } from '../../../redux/reducers/productSlice';
+import { deleteProduct } from '../../../redux/reducers/productSlice';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks/reduxHooks';
-// Hooks
-import { useEffect } from 'react';
+
 // Components
 import AddProduct from '../../../components/forms/product/AddProduct';
+// Types
+import type { ProductType } from '../../../types/types';
 
-interface DataType {
-  name: string;
-  description: string;
-  category: string[];
-  price: number;
-  amount: number;
-  images: string[];
-  id: string;
-}
-
-const Settings = () => {
+const Settings = (): JSX.Element => {
   const values = useAppSelector((state) => state.product.values);
   const dispatch = useAppDispatch();
   const theme = useTheme();
   const isMobil = useMediaQuery(theme.breakpoints.down('md'));
 
-  useEffect(() => {
-    dispatch(getProducts());
-  }, [values]);
-
-  const deleteHandle = (id: string) => {
+  const deleteHandle = (id: string): void => {
     dispatch(deleteProduct(id));
   };
 
@@ -50,7 +37,7 @@ const Settings = () => {
       </Box>
       <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'stretch' }}>
         {values.length > 0 &&
-          values.map((item: DataType) => {
+          values.map((item: ProductType) => {
             return (
               <Card
                 key={item.id}

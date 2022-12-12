@@ -4,7 +4,6 @@ import SignUp from './signUp/SignUp';
 // MUI
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
-
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import TabList from '@mui/lab/TabList';
@@ -69,10 +68,10 @@ const FormModal = ({ open, closeModal }: FProps) => {
               </TabList>
             </Box>
             <TabPanel value="1">
-              <Login />
+              <Login closeModal={closeModal} />
             </TabPanel>
             <TabPanel value="2">
-              <SignUp />
+              <SignUp closeModal={closeModal} />
             </TabPanel>
           </TabContext>
         </Box>

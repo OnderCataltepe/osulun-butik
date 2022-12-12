@@ -30,10 +30,12 @@ const DrawerComp = (): JSX.Element => {
   const [openDrawer, setOpenDrawer] = useState<boolean>(false);
   const [expanded, setExpanded] = useState<string | false>(false);
 
-  const handleChange = (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
-    setExpanded(isExpanded ? panel : false);
-  };
-  const handleClose = () => {
+  const handleChange =
+    (panel: string) =>
+    (event: React.SyntheticEvent, isExpanded: boolean): void => {
+      setExpanded(isExpanded ? panel : false);
+    };
+  const handleClose = (): void => {
     setOpenDrawer(false);
   };
   return (
@@ -47,13 +49,20 @@ const DrawerComp = (): JSX.Element => {
         open={openDrawer}
         onClose={() => setOpenDrawer(false)}>
         <List sx={{ width: '100%', pt: 6 }}>
-          <Accordion sx={{ width: '100%' }} elevation={0} disableGutters>
-            <AccordionSummary>
-              <Link style={{ color: 'black', textDecoration: 'none' }} to="/" onClick={handleClose}>
-                Anasayfa
-              </Link>
-            </AccordionSummary>
-          </Accordion>
+          <Divider sx={{ mt: 1 }} />
+          <ListItem sx={{ p: 0 }}>
+            <Accordion sx={{ width: '100%' }} elevation={0} disableGutters>
+              <AccordionSummary>
+                <Link
+                  style={{ color: 'black', textDecoration: 'none' }}
+                  to="/"
+                  onClick={handleClose}>
+                  ANASAYFA
+                </Link>
+              </AccordionSummary>
+            </Accordion>
+          </ListItem>
+          <Divider />
           {navData.map((item, index) => {
             const idNumber = index + 1;
             return (

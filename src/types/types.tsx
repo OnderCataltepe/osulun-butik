@@ -1,3 +1,5 @@
+// Navigation data types
+
 export interface SubNavType {
   id: number;
   title: string;
@@ -16,6 +18,8 @@ export interface NavType {
   subTitles: SubNavType[];
 }
 
+// Product Types
+
 export interface ProductType {
   name: string;
   description: string;
@@ -32,4 +36,14 @@ export interface BasketType {
   amount: number;
   price: number;
   image: string;
+}
+
+// User Type
+export interface UserType {
+  uid: string;
+  name: string;
+  surname: string;
+  role: string;
+  email: string;
+  basket: BasketType[];
 }
