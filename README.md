@@ -1,6 +1,6 @@
 # Sulun Butik
 
-I choose old school swindling as a theme to be more fun while preparing content. [Click](https://sulunbutik.netlify.app/) click for safe shopping.
+I choose old school swindling as a theme to be more fun while preparing content. [Click](https://sulunbutik.netlify.app/) for safe shopping.
 
 <p align="center">
   <img width="auto" height="200" src="https://sulunbutik.netlify.app/static/media/logoFooter.7b67cfc6400afe35d7bb.jpg">
